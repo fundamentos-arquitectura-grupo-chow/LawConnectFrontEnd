@@ -1,0 +1,158 @@
+/* Fuente global a Arial */
+* {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Contenedor principal */
+.main-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-color: #f0f0f0;
+  padding: 20px;
+}
+
+/* Contenedor de chat */
+.chat-container {
+  background-color: #fff;
+  width: 100%;
+  max-width: 600px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+/* Encabezado del chat */
+.chat-header {
+  display: flex;
+  align-items: center;
+  margin-bottom: 15px;
+}
+
+.chat-header .profile-photo {
+  width: 50px;
+  height: 50px;
+  border-radius: 5px;
+  margin-right: 10px;
+}
+
+.chat-header .chat-info h4 {
+  margin: 0;
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.chat-header .chat-info p {
+  margin: 0;
+  font-size: 14px;
+  color: #555;
+}
+
+/* Contenedor de mensajes */
+.chat-messages {
+  flex: 1;
+  padding: 20px;
+  background-color: #f9f9f9;
+  border-radius: 10px;
+  margin-bottom: 15px;
+}
+
+/* Título de la videollamada (centrado) */
+.title {
+  font-size: 22px;
+  font-weight: bold;
+  color: #000000;
+  margin-bottom: 10px;
+  text-align: center;
+}
+
+/* Descripción del mensaje */
+.description {
+  font-size: 16px;
+  color: #555;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+/* Botón de Google Meet */
+.meet-button {
+  display: inline-block;
+  padding: 12px 25px;
+  background-color: #D9D9D9;
+  color: black;
+  text-align: center;
+  text-decoration: none;
+  font-size: 16px;
+  border-radius: 8px;
+  transition: background-color 0.3s ease;
+  margin: 0 auto;
+  display: block;
+}
+
+.meet-button:hover {
+  background-color: #b0b0b0;
+}
+
+.meet-button:focus {
+  outline: 2px solid #2980b9;
+  outline-offset: 4px;
+}
+
+/* Estilo de contenedor de chat y mensajes */
+.chat-box {
+  flex: 1;
+  overflow-y: auto;
+  padding: 10px;
+  background-color: #f0f0f0;
+  margin-bottom: 20px;
+}
+
+.chat-message {
+  margin-bottom: 10px;
+}
+
+.chat-message .sender {
+  font-weight: bold;
+}
+
+.chat-message .message {
+  margin-left: 10px;
+}
+
+.chat-input {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.chat-input .message-input {
+  width: 80%;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+}
+
+.chat-input .send-button {
+  padding: 10px 20px;
+  background-color: #3498db;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.chat-input .send-button:hover {
+  background-color: #2980b9;
+}
+
+.chat-input .send-button:focus {
+  outline: 2px solid #2980b9;
+  outline-offset: 4px;
+}

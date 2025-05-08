@@ -1,0 +1,16 @@
+<mat-card class="user-profile">
+  <!-- Imagen del usuario -->
+  <img mat-card-image [src]="url_image" alt="Usuario" class="avatar">
+
+  <!-- Nombre del usuario -->
+  <mat-card-header>
+    <mat-card-title>{{ name }}</mat-card-title>
+  </mat-card-header>
+
+  <!-- Mis Casos -->
+  <mat-card-content>
+    <h5 class="mis-casos">
+      Mis Casos: <span class="numero">2</span>
+    </h5>
+  </mat-card-content>
+</mat-card>

@@ -1,0 +1,14 @@
+<div *ngIf="consultations.length > 0">
+  <h2>Consultations with Lawyer</h2>
+  <ul>
+    <li *ngFor="let consultation of consultations">
+      Consultation ID: {{ consultation.id }} - Status: {{ consultation.applicationStatus }}
+      <button *ngIf="consultation.applicationStatus === 'APPROVED'" (click)="viewLegalCase(consultation.id)">
+        View Legal Case
+      </button>
+    </li>
+  </ul>
+</div>
+<div *ngIf="consultations.length === 0">
+  <p>No consultations found.</p>
+</div>

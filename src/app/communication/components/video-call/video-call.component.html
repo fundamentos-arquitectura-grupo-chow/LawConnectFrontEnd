@@ -1,0 +1,22 @@
+<div class="main-wrapper">
+  <div class="chat-container">
+    <div class="chat-header" *ngIf="lawyer">
+      <img [src]="lawyer.profile.image_url" alt="Foto de Perfil de {{ lawyer.profile.name.fullName  }}" class="profile-photo" >
+      <div class="chat-info">
+        <h4>{{ lawyer.profile.name.fullName }}</h4>
+        <p>{{ lawyer.lawyerTypes }}</p>
+      </div>
+    </div>
+
+    <div class="chat-messages">
+      <h2 class="title">Videollamadas</h2>
+      <mat-list>
+        <mat-list-item *ngFor="let videoCall of videoCalls">
+          <h3 matLine>{{ videoCall.description }}</h3>
+          <p matLine>{{ videoCall.status }}</p>
+        </mat-list-item>
+      </mat-list>
+      <button mat-raised-button color="primary" *ngIf="currentUserRole === '[Role(id=1, name=LAWYER)]'" (click)="createVideoCall()">Create Video Call</button>
+    </div>
+  </div>
+</div>

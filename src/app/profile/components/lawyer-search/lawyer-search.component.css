@@ -1,0 +1,15 @@
+.search-container {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+
+.lawyer-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.lawyer-card {
+  width: 300px;
+}

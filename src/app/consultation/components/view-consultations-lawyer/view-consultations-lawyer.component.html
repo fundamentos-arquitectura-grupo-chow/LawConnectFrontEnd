@@ -1,0 +1,9 @@
+<div class="consultations-container">
+  <h2>Pending Consultations</h2>
+  <div *ngFor="let consultation of consultations" class="consultation-item">
+    <p><strong>Client:</strong> {{ consultation.clientId }}</p>
+    <p><strong>Description:</strong> {{ consultation.description }}</p>
+    <button (click)="approveConsultation(consultation.id)">Approve</button>
+    <button (click)="declineConsultation(consultation.id)">Decline</button>
+  </div>
+</div>

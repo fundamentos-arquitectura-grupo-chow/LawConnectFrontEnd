@@ -1,0 +1,21 @@
+<div class="document-table">
+  <table>
+    <thead>
+    <tr>
+      <th>ID</th>
+      <th>Título</th>
+      <th>Descripción</th>
+      <th>Tipo</th>
+      <th>Estado</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let document of documents">
+      <td>{{ document.title }}</td>
+      <td>{{ document.description }}</td>
+      <td>{{ document.type }}</td>
+      <td>{{ document.status }}</td>
+    </tr>
+    </tbody>
+  </table>
+</div>

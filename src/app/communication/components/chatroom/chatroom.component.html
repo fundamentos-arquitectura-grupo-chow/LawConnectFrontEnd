@@ -1,0 +1,38 @@
+<div class="main-wrapper">
+  <div class="chat-container">
+    <!-- Encabezado del chat -->
+    <div class="chat-header">
+      <img src="../../../../assets/images/jpc_3.jpg" alt="Foto de Perfil" class="profile-photo">
+      <div class="chat-info">
+        <h4>{{ consultation?.lawyerId }}</h4>
+        <p>{{ consultation?.description }}</p>
+      </div>
+    </div>
+
+    <!-- Área de mensajes -->
+    <div class="chat-messages">
+      <div
+        *ngFor="let message of messages"
+        [ngClass]="{'sent': isSentMessage(message.senderType), 'received': !isSentMessage(message.senderType)}"
+        class="message"
+      >
+        {{ message.content }}
+      </div>
+    </div>
+    <!-- Controles de envío -->
+    <div class="chat-controls">
+      <label for="file-input" class="file-label">
+        📎
+        <input type="file" id="file-input" class="file-input" (change)="onFileSelected($event)">
+      </label>
+      <input
+        [(ngModel)]="newMessage"
+        (keyup.enter)="sendMessage()"
+        type="text"
+        placeholder="Escribe tu mensaje..."
+        class="message-input"
+      />
+      <button (click)="sendMessage()" class="send-button">Enviar</button>
+    </div>
+  </div>
+</div>

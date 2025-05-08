@@ -1,0 +1,19 @@
+<mat-dialog-content class="add-payment">
+  <h5>Generar Pago</h5>
+  <p>Aquí generarás un pago para el cliente por la consulta</p>
+
+  <div class="form-group">
+    <mat-form-field>
+      <input matInput placeholder="Precio">
+    </mat-form-field>
+  </div>
+
+  <mat-dialog-actions>
+    <div class="actions">
+      <button mat-button class="cancel" (click)="cancel()">Cancelar</button>
+      <button mat-button class="accept" (click)="accept()">Aceptar</button>
+    </div>
+  </mat-dialog-actions>
+</mat-dialog-content>
+
+

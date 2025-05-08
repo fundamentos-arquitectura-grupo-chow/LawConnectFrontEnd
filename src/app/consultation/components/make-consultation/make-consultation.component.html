@@ -1,0 +1,17 @@
+<form (ngSubmit)="onSubmit()">
+  <div>
+    <label for="title">Title:</label>
+    <input type="text" id="title" [(ngModel)]="consultation.title" name="title" required>
+  </div>
+  <div>
+    <label for="description">Description:</label>
+    <textarea id="description" [(ngModel)]="consultation.description" name="description" required></textarea>
+  </div>
+  <div>
+    <label for="type">Type:</label>
+    <select id="type" [(ngModel)]="consultation.type" name="type" required>
+      <option *ngFor="let type of consultationTypes" [value]="type.value">{{ type.label }}</option>
+    </select>
+  </div>
+  <button type="submit">Submit</button>
+</form>

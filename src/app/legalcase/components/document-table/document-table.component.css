@@ -1,0 +1,43 @@
+.paginator {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 10px;
+}
+
+h1 {
+  font-size: 1rem;
+  font-weight: 500;
+  color: #000000;
+  margin: 0 0 20px 0;
+}
+
+.actions {
+  display: flex;
+  gap: 10px;
+  justify-content: flex-end;
+  padding: 20px;
+}
+
+.actions button {
+  padding: 10px 20px;
+  border: none;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: bold;
+}
+
+.actions .model {
+  background-color: #4B4B4B;
+  color: #ffffff;
+  margin: 10px 0;
+  border-radius: 30px;
+}
+
+.actions .model:hover {
+  background-color: #353535;
+}
+
+.spacer {
+  flex: 1;
+}
+

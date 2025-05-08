@@ -1,0 +1,15 @@
+<div class="documents-management">
+  <div class="document-block">
+    <div class="block-header">
+      <p>DOCUMENTOS DE CASO {{ legalCaseId }}</p>
+    </div>
+
+    <div class="table-management">
+      <app-document-table [legalCaseId]="legalCaseId"></app-document-table>
+    </div>
+
+    <div class="actions" *ngIf="currentUserRole === '[Role(id=1, name=LAWYER)]'">
+      <button class="model" (click)="openAddDocumentDialog()">Subir Documento</button>
+    </div>
+  </div>
+</div>

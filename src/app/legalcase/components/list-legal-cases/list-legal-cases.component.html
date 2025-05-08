@@ -1,0 +1,8 @@
+<div class="legal-cases-container">
+  <h2>Approved Legal Cases</h2>
+  <div *ngFor="let legalCase of legalCases" class="legal-case-item">
+    <h3>{{ legalCase.title }}</h3>
+    <p>{{ legalCase.description }}</p>
+    <button (click)="viewLegalCase(legalCase.consultationId.id)">Ver Caso Legal</button>
+  </div>
+</div>

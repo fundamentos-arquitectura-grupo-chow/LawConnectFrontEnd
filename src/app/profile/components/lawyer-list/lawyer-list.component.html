@@ -1,0 +1,34 @@
+<div class="recommendation-container">
+  <h3 class="mat-title-small">RECOMENDACIONES</h3>
+
+  <div class="recommendation-card">
+    <!-- Botón Izquierda -->
+    <button class="navigation-btn" (click)="prevLawyer()" [disabled]="currentIndex === 0">
+      &lt;
+    </button>
+
+    <!-- Información del Abogado -->
+    <div class="lawyer-info" *ngIf="currentLawyer">
+      <img [src]="currentLawyer.profile.image_url" [alt]="currentLawyer.profile.name.firstName" class="lawyer-image">
+      <div class="info-container">
+        <h4>{{ currentLawyer.profile.name.firstName }} {{ currentLawyer.profile.name.lastName }}</h4> <!-- Nombre del abogado -->
+        <p>{{ currentLawyer.lawyerTypes.join(', ') }}</p> <!-- Especialidad -->
+        <div class="stars">
+          <span *ngFor="let star of [1, 2, 3, 4, 5]; let i = index" [class.filled]="i < 5">★</span> <!-- Estrellas fijas -->
+        </div>
+        <button (click)="viewProfile(currentLawyer.id)">Ver Perfil</button>
+      </div>
+    </div>
+
+    <!-- Botón Derecha -->
+    <button class="navigation-btn" (click)="nextLawyer()" [disabled]="currentIndex === randomLawyers.length - 1">
+      &gt;
+    </button>
+  </div>
+</div>
+
+<!-- Sección Últimos Casos -->
+<app-last-legal-cases [lawyerId]="currentLawyer.id"></app-last-legal-cases>
+
+
+

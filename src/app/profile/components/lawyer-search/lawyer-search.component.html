@@ -1,0 +1,29 @@
+<div class="search-container">
+  <mat-form-field appearance="fill">
+    <mat-label>Search by Name</mat-label>
+    <input matInput [(ngModel)]="searchName" (input)="filterLawyers()">
+  </mat-form-field>
+
+  <mat-form-field appearance="fill">
+    <mat-label>Search by Specialty</mat-label>
+    <mat-select [(ngModel)]="searchSpecialty" (selectionChange)="filterLawyers()">
+      <mat-option *ngFor="let specialty of specialties" [value]="specialty">{{ specialty }}</mat-option>
+    </mat-select>
+  </mat-form-field>
+</div>
+
+<div class="lawyer-list">
+  <mat-card *ngFor="let lawyer of filteredLawyers" class="lawyer-card">
+    <mat-card-header>
+      <mat-card-title>{{ lawyer.profile.name.firstName }} {{ lawyer.profile.name.lastName }}</mat-card-title>
+      <mat-card-subtitle>{{ lawyer.lawyerTypes.join(', ') }}</mat-card-subtitle>
+    </mat-card-header>
+    <img mat-card-image [src]="lawyer.profile.image_url" alt="{{ lawyer.profile.name.firstName }}">
+    <mat-card-content>
+      <p>Prices: {{ lawyer.prices }}</p>
+    </mat-card-content>
+    <mat-card-actions>
+      <button mat-button [routerLink]="['/lawyer-profile', lawyer.id]">View Profile</button>
+    </mat-card-actions>
+  </mat-card>
+</div>

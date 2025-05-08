@@ -1,0 +1,14 @@
+<!-- Sección Últimos Casos -->
+<div class="recent-cases-section">
+  <h3 class="mat-title-small">ÚLTIMOS CASOS</h3>
+
+  <div *ngFor="let legalCase of legalCases" class="caso-item">
+    <div class="estado" [ngClass]="{'abierto': legalCase.status === 'OPEN', 'cerrado': legalCase.status === 'CLOSED'}">
+      {{ legalCase.status }}
+    </div>
+    <mat-card-content class="caso-info">
+      <h4>{{ legalCase.title }}</h4>
+      <p>{{ legalCase.description }}</p>
+    </mat-card-content>
+  </div>
+</div>

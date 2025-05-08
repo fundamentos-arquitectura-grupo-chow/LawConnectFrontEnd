@@ -1,0 +1,18 @@
+<div class="notifications-container">
+  <!-- User Profile -->
+  <app-current-user></app-current-user>
+
+  <!-- Notifications Content -->
+  <div class="notifications-content">
+    <div class="notifications-list">
+      <div *ngFor="let notification of notifications" class="notification-item">
+        <mat-icon class="case-logo">notifications</mat-icon>
+        <div class="case-details">
+          <h6>{{ notification.title }}</h6>
+          <p>{{ notification.description }}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
