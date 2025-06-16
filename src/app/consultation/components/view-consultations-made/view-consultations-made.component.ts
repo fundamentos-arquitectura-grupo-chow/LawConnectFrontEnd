@@ -35,4 +35,13 @@ export class ViewConsultationsMadeComponent implements OnInit {
   viewLegalCase(consultationId: number): void {
     this.router.navigate(['/view-legal-case-client', consultationId]);
   }
+
+  getStatusClass(status: string): string {
+    switch(status) {
+      case 'APPROVED': return 'status-approved';
+      case 'PENDING': return 'status-pending';
+      case 'REJECTED': return 'status-rejected';
+      default: return '';
+    }
+  }
 }

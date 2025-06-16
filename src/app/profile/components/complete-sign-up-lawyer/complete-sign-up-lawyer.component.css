@@ -1,0 +1,56 @@
+/* Configuración básica del diálogo */
+::ng-deep .mat-dialog-container {
+  min-width: 500px !important;
+  padding: 25px !important;
+}
+
+/* Título estilizado */
+h1 {
+  color: #000000;
+  text-align: center;
+  font-weight: 700;
+  font-size: 1.8rem;
+  position: relative;
+  padding-bottom: 15px;
+  margin-bottom: 25px;
+}
+
+h1:after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 80px;
+  height: 3px;
+  background: linear-gradient(90deg, #cb2020, #d69b9b);
+  border-radius: 2px;
+}
+
+/* Campos de formulario */
+mat-form-field {
+  width: 100%;
+  margin-bottom: 15px;
+}
+
+::ng-deep .mat-form-field-appearance-outline .mat-form-field-outline {
+  color: #cfd9db;
+}
+
+::ng-deep .mat-form-field-appearance-outline.mat-focused .mat-form-field-outline {
+  color: #cb2020;
+}
+
+/* Botones */
+mat-dialog-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 15px;
+  margin-top: 20px;
+}
+
+button[mat-button]:last-child {
+  background-color: #cb2020;
+  color: white;
+  min-width: 100px;
+}

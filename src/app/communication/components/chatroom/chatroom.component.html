@@ -2,9 +2,9 @@
   <div class="chat-container">
     <!-- Encabezado del chat -->
     <div class="chat-header">
-      <img src="../../../../assets/images/jpc_3.jpg" alt="Foto de Perfil" class="profile-photo">
+      <img src="../../../../assets/images/abogado696.jpg" alt="Foto de Perfil" class="profile-photo">
       <div class="chat-info">
-        <h4>{{ consultation?.lawyerId }}</h4>
+        <h4>{{ lawyerName || 'Abogado #' + consultation?.lawyerId }}</h4>
         <p>{{ consultation?.description }}</p>
       </div>
     </div>
@@ -22,7 +22,6 @@
     <!-- Controles de envío -->
     <div class="chat-controls">
       <label for="file-input" class="file-label">
-        📎
         <input type="file" id="file-input" class="file-input" (change)="onFileSelected($event)">
       </label>
       <input

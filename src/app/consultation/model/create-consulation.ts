@@ -2,7 +2,7 @@ export class CreateConsultation {
   lawyerId: number;
   clientId: number;
   description: string;
-  currency: number;
+  Currency: number;
   type: number;
   title: string;
 
@@ -10,14 +10,14 @@ export class CreateConsultation {
     lawyerId: number,
     clientId: number,
     description: string,
-    currency: number,
+    Currency: number,
     type: number,
     title: string
   ) {
     this.lawyerId = lawyerId;
     this.clientId = clientId;
     this.description = description;
-    this.currency = currency;
+    this.Currency = Currency;
     this.type = type;
     this.title = title;
   }

@@ -1,14 +1,62 @@
-<div *ngIf="consultations.length > 0">
-  <h2>Consultations with Lawyer</h2>
-  <ul>
-    <li *ngFor="let consultation of consultations">
-      Consultation ID: {{ consultation.id }} - Status: {{ consultation.applicationStatus }}
-      <button *ngIf="consultation.applicationStatus === 'APPROVED'" (click)="viewLegalCase(consultation.id)">
-        View Legal Case
-      </button>
-    </li>
-  </ul>
-</div>
-<div *ngIf="consultations.length === 0">
-  <p>No consultations found.</p>
+<div class="consultations-container">
+  <h2 class="page-title">Mis Consultas Legales</h2>
+
+  <div *ngIf="consultations.length === 0" class="empty-state">
+    <p>No tienes consultas realizadas con este abogado.</p>
+  </div>
+
+  <div *ngIf="consultations.length > 0" class="consultations-list">
+    <div *ngFor="let consultation of consultations" class="consultation-card">
+      <div class="card-header">
+        <span class="consultation-id">Consulta #{{ consultation.id }}</span>
+        <span class="status-badge" [ngClass]="getStatusClass(consultation.applicationStatus)">
+          {{ consultation.applicationStatus }}
+        </span>
+      </div>
+
+      <div class="card-body">
+        <div class="info-row">
+          <span class="label">Tipo de consulta:</span>
+          <span class="value">{{ consultation.consultationType }}</span>
+        </div>
+
+        <div class="info-row">
+          <span class="label">Descripción:</span>
+          <p class="description">{{ consultation.description }}</p>
+        </div>
+
+        <div class="info-row">
+          <span class="label">ID Abogado:</span>
+          <span class="value">{{ consultation.lawyerId }}</span>
+        </div>
+
+        <div class="info-row">
+          <span class="label">ID Cliente:</span>
+          <span class="value">{{ consultation.clientId }}</span>
+        </div>
+
+        <div *ngIf="consultation.payment && consultation.payment.length > 0" class="payment-section">
+          <h3>Información de Pago</h3>
+          <div *ngFor="let payment of consultation.payment" class="payment-info">
+            <div class="info-row">
+              <span class="label">ID Pago:</span>
+              <span class="value">{{ payment.id }}</span>
+            </div>
+            <div class="info-row">
+              <span class="label">Monto:</span>
+              <span class="value">{{ payment.amount }}</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="card-footer">
+        <button *ngIf="consultation.applicationStatus === 'APPROVED'"
+                class="action-button"
+                (click)="viewLegalCase(consultation.id)">
+          Ver Caso Legal
+        </button>
+      </div>
+    </div>
+  </div>
 </div>

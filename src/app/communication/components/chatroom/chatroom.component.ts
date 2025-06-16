@@ -8,6 +8,7 @@ import { Consultation } from '../../../consultation/model/consultation';
 import { AuthenticationService } from '../../../iam/services/authentication.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ConsultationService } from '../../../consultation/services/consultation.service';
+import { LawyerService } from "../../../profile/services/lawyer.service";
 
 @Component({
   selector: 'app-chatroom',
@@ -20,6 +21,7 @@ export class ChatroomComponent implements OnInit {
   messages: MessageResource[] = [];
   newMessage: string = '';
   currentRole: string = '';
+  lawyerName: string = '';
 
   constructor(
     private chatRoomService: ChatRoomService,
@@ -27,8 +29,9 @@ export class ChatroomComponent implements OnInit {
     private authService: AuthenticationService,
     private router: Router,
     private route: ActivatedRoute,
-    public consultationService: ConsultationService
-  ) {}
+    public consultationService: ConsultationService,
+    private lawyerService: LawyerService // Añadir esta línea
+) {}
 
   ngOnInit() {
     this.authService.currentUserRole.subscribe(role => {
@@ -41,17 +44,30 @@ export class ChatroomComponent implements OnInit {
     });
   }
 
-  loadConsultation(consultationId: number) {
-    this.consultationService.getConsultationById(consultationId).subscribe(
-      (consultation) => {
-        this.consultation = consultation;
-        this.loadChatRoom();
-      },
-      (error) => {
-        console.error('Error loading consultation:', error);
+loadConsultation(consultationId: number) {
+  this.consultationService.getConsultationById(consultationId).subscribe(
+    (consultation) => {
+      this.consultation = consultation;
+      this.loadChatRoom();
+
+      // Añadir esta parte para obtener el nombre del abogado
+      if (consultation.lawyerId) {
+        this.lawyerService.getLawyerById(consultation.lawyerId).subscribe(
+          (lawyer) => {
+            this.lawyerName = lawyer.profile.name.fullName;
+          },
+          (error) => {
+            console.error('Error al cargar información del abogado:', error);
+            this.lawyerName = 'Abogado #' + consultation.lawyerId;
+          }
+        );
       }
-    );
-  }
+    },
+    (error) => {
+      console.error('Error loading consultation:', error);
+    }
+  );
+}
 
   loadChatRoom() {
     if (this.consultation) {
@@ -92,10 +108,23 @@ export class ChatroomComponent implements OnInit {
   onFileSelected(event: any) {
     const file: File = event.target.files[0];
     if (file) {
-      const fileMessage = `Archivo subido: ${file.name}`;
-      this.messages.push({ text: fileMessage, type: 'sent', isFile: true } as unknown as MessageResource);
+      // Crear una URL para previsualizar la imagen si es necesario
+      const fileUrl = URL.createObjectURL(file);
+
+      // Para archivos de imagen
+      if (file.type.startsWith('image/')) {
+        // Agregar mensaje con contenido enriquecido
+        this.newMessage = `[Imagen adjunta: ${file.name}]`;
+      } else {
+        // Para otros tipos de archivos
+        this.newMessage = `[Archivo adjunto: ${file.name}]`;
+      }
+
+      // Enviar mensaje con el archivo
+      this.sendMessage();
     }
   }
+
   isSentMessage(senderType: String): boolean {
     console.log('Sender type:', this.currentRole);
     const sender = this.currentRole === '[Role(id=1, name=LAWYER)]' ? "LAWYER" : "CLIENT";

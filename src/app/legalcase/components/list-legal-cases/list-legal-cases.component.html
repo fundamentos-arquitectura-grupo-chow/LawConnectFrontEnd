@@ -1,8 +1,29 @@
-<div class="legal-cases-container">
-  <h2>Approved Legal Cases</h2>
-  <div *ngFor="let legalCase of legalCases" class="legal-case-item">
-    <h3>{{ legalCase.title }}</h3>
-    <p>{{ legalCase.description }}</p>
-    <button (click)="viewLegalCase(legalCase.consultationId.id)">Ver Caso Legal</button>
+<div class="cases-container">
+  <h2 class="section-title">Casos Legales Aprobados</h2>
+
+  <div *ngIf="legalCases.length === 0" class="empty-state">
+    <p>No hay casos legales disponibles en este momento.</p>
+  </div>
+
+  <div class="cases-grid">
+    <div *ngFor="let legalCase of legalCases" class="case-card">
+      <div class="case-header">
+        <h3 class="case-title">{{ legalCase.title }}</h3>
+        <span class="case-badge">Aprobado</span>
+      </div>
+
+      <div class="case-content">
+        <p class="case-description">{{ legalCase.description }}</p>
+      </div>
+
+      <div class="case-footer">
+        <button class="view-button" (click)="viewLegalCase(legalCase.id)">
+          <span class="button-text">Ver detalles</span>
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M5 12h14M12 5l7 7-7 7"/>
+          </svg>
+        </button>
+      </div>
+    </div>
   </div>
 </div>
