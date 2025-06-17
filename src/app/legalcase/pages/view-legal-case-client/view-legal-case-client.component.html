@@ -1,7 +1,8 @@
 <div class="view-case">
   <div class="case-block">
     <div class="case-header">
-      <p>CASO {{ legalCase?.id }}</p>
+      <p>CASO LEGAL</p>
+      <p *ngIf="isCaseClosed" class="closed-status">CASO CERRADO</p>
     </div>
 
     <div class="case-content">
@@ -12,20 +13,17 @@
         </p>
       </div>
       <div class="actions">
-        <button class="go-to" (click)="goToDocuments()">Ir A Documentos</button>
+        <button class="go-to" [disabled]="isCaseClosed" (click)="goToDocuments()">Ir A Documentos</button>
         <span class="spacer"></span>
-        <button class="go-to" (click)="goToPayments()">Generar Pago</button>
+        <button class="go-to" [disabled]="isCaseClosed" (click)="goToPayments()">Generar Pago</button>
       </div>
     </div>
     <div class="communication">
-      <button class="see-communication" (click)="goToChatRoom()">Ver Chat</button>
+      <button class="see-communication" [disabled]="isCaseClosed" (click)="goToChatRoom()">Ver Chat</button>
       <br>
-      <button class="see-communication" (click)="goToVideoCall()">Ir a Videollamada</button>
+      <button class="see-communication" [disabled]="isCaseClosed" (click)="goToVideoCall()">Ir a Videollamada</button>
       <br>
-      <button class="see-communication" (click)="goToAppointments()">Ver citas reservadas</button>
-    </div>
-    <div class="close-case">
-      <button class="close" (click)="openCloseCasePopup('close')">Cerrar Caso</button>
+      <button class="see-communication" [disabled]="isCaseClosed" (click)="goToAppointments()">Ver citas reservadas</button>
     </div>
   </div>
 </div>

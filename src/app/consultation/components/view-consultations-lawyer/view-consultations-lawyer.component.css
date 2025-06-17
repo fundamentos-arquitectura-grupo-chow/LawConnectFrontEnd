@@ -1,0 +1,138 @@
+/* Main container styling */
+.consultations-container {
+  max-width: 900px;
+  margin: 2rem auto;
+  padding: 1.5rem;
+  border-radius: 8px;
+  background-color: #f5f7fa;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+}
+
+/* Heading styling */
+h2 {
+  color: #2c3e50;
+  font-size: 1.8rem;
+  margin-bottom: 1.5rem;
+  padding-bottom: 0.8rem;
+  text-align: center;
+  position: relative;
+  border-bottom: none;
+}
+
+h2:after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 80px;
+  height: 3px;
+  background-color: #b82121;
+}
+
+/* Empty state styling */
+.empty-state {
+  text-align: center;
+  padding: 3rem 1rem;
+  background-color: white;
+  border-radius: 8px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+  margin: 2rem 0;
+}
+
+.empty-icon {
+  font-size: 3.5rem;
+  margin-bottom: 1.2rem;
+  color: #7f8c8d;
+}
+
+.empty-state p {
+  color: #7f8c8d;
+  font-size: 1.2rem;
+  margin: 0.5rem 0;
+}
+
+.empty-subtitle {
+  font-size: 0.9rem;
+  opacity: 0.7;
+  margin-top: 0.5rem;
+}
+
+/* Consultation item styling */
+.consultation-item {
+  background-color: white;
+  border-radius: 6px;
+  padding: 1.2rem;
+  margin-bottom: 1rem;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  border-left: 4px solid #b82121;
+  display: flex;
+  flex-direction: column;
+}
+
+.consultation-item:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.12);
+}
+
+.consultation-item p {
+  margin: 0.5rem 0;
+  color: #34495e;
+  line-height: 1.4;
+  padding: 0.2rem 0;
+}
+
+/* Action buttons styling */
+.action-buttons {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 0.8rem;
+}
+
+button {
+  padding: 0.6rem 1.2rem;
+  margin: 0 0 0 0.8rem;
+  border: none;
+  border-radius: 4px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+button:first-of-type {
+  background-color: #2ecc71;
+  color: white;
+}
+
+button:last-of-type {
+  background-color: #e74c3c;
+  color: white;
+}
+
+button:hover {
+  transform: scale(1.03);
+  opacity: 0.9;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+button:active {
+  transform: scale(0.98);
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+  .consultations-container {
+    padding: 1rem;
+    margin: 1rem;
+  }
+
+  .action-buttons {
+    flex-direction: column;
+  }
+
+  button {
+    margin: 0.5rem 0;
+    width: 100%;
+  }
+}

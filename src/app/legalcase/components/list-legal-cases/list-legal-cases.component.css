@@ -89,6 +89,11 @@
   letter-spacing: 0.5px;
 }
 
+.case-badge.case-badge-closed {
+  background-color: #ffeded;
+  color: #CE2828;
+}
+
 /* Contenido de la tarjeta */
 .case-content {
   padding: 20px;

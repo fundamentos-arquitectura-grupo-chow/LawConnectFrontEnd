@@ -9,6 +9,7 @@ import { AuthenticationService } from '../../../iam/services/authentication.serv
 import { ActivatedRoute, Router } from '@angular/router';
 import { ConsultationService } from '../../../consultation/services/consultation.service';
 import { LawyerService } from "../../../profile/services/lawyer.service";
+import { ClientService } from "../../../profile/services/client.service";
 
 @Component({
   selector: 'app-chatroom',
@@ -21,7 +22,7 @@ export class ChatroomComponent implements OnInit {
   messages: MessageResource[] = [];
   newMessage: string = '';
   currentRole: string = '';
-  lawyerName: string = '';
+  chatPartnerName: string = '';
 
   constructor(
     private chatRoomService: ChatRoomService,
@@ -30,7 +31,8 @@ export class ChatroomComponent implements OnInit {
     private router: Router,
     private route: ActivatedRoute,
     public consultationService: ConsultationService,
-    private lawyerService: LawyerService // Añadir esta línea
+    private lawyerService: LawyerService,
+    private clientService: ClientService
 ) {}
 
   ngOnInit() {
@@ -44,30 +46,44 @@ export class ChatroomComponent implements OnInit {
     });
   }
 
-loadConsultation(consultationId: number) {
-  this.consultationService.getConsultationById(consultationId).subscribe(
-    (consultation) => {
-      this.consultation = consultation;
-      this.loadChatRoom();
+  loadConsultation(consultationId: number) {
+    this.consultationService.getConsultationById(consultationId).subscribe(
+      (consultation) => {
+        this.consultation = consultation;
+        this.loadChatRoom();
 
-      // Añadir esta parte para obtener el nombre del abogado
-      if (consultation.lawyerId) {
-        this.lawyerService.getLawyerById(consultation.lawyerId).subscribe(
-          (lawyer) => {
-            this.lawyerName = lawyer.profile.name.fullName;
-          },
-          (error) => {
-            console.error('Error al cargar información del abogado:', error);
-            this.lawyerName = 'Abogado #' + consultation.lawyerId;
-          }
-        );
+        // Check current user role to determine which name to display
+        const isLawyer = this.currentRole === '[Role(id=1, name=LAWYER)]';
+
+        if (isLawyer && consultation.clientId) {
+          // If current user is a lawyer, show the client's name
+          this.clientService.getClientById(consultation.clientId).subscribe(
+            (client) => {
+              this.chatPartnerName = client.profile.name.fullName;
+            },
+            (error) => {
+              console.error('Error al cargar información del cliente:', error);
+              this.chatPartnerName = 'Cliente #' + consultation.clientId;
+            }
+          );
+        } else if (!isLawyer && consultation.lawyerId) {
+          // If current user is a client, show the lawyer's name (current behavior)
+          this.lawyerService.getLawyerById(consultation.lawyerId).subscribe(
+            (lawyer) => {
+              this.chatPartnerName = lawyer.profile.name.fullName;
+            },
+            (error) => {
+              console.error('Error al cargar información del abogado:', error);
+              this.chatPartnerName = 'Abogado #' + consultation.lawyerId;
+            }
+          );
+        }
+      },
+      (error) => {
+        console.error('Error loading consultation:', error);
       }
-    },
-    (error) => {
-      console.error('Error loading consultation:', error);
-    }
-  );
-}
+    );
+  }
 
   loadChatRoom() {
     if (this.consultation) {

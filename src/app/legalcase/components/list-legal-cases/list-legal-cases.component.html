@@ -9,7 +9,9 @@
     <div *ngFor="let legalCase of legalCases" class="case-card">
       <div class="case-header">
         <h3 class="case-title">{{ legalCase.title }}</h3>
-        <span class="case-badge">Aprobado</span>
+        <span class="case-badge" [ngClass]="{'case-badge-closed': legalCase.status === 'CLOSED'}">
+        {{ legalCase.status === 'CLOSED' ? 'Cerrado' : 'Aprobado' }}
+      </span>
       </div>
 
       <div class="case-content">

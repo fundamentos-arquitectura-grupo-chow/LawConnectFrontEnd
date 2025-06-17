@@ -117,3 +117,15 @@
 .close-case .close:hover {
   background-color: #771717;
 }
+
+button[disabled] {
+  background-color: #cccccc !important;
+  color: #666666 !important;
+  cursor: not-allowed !important;
+}
+
+.closed-status {
+  color: #CE2828;
+  font-weight: bold;
+  margin-top: 5px;
+}

@@ -16,6 +16,7 @@ export class ViewLegalCaseClientComponent implements OnInit {
   legalCase: LegalCase | null = null;
   showPopup = false;
   consultation: Consultation | null = null;
+  isCaseClosed = false;
 
   constructor(
     private route: ActivatedRoute,
@@ -37,6 +38,14 @@ export class ViewLegalCaseClientComponent implements OnInit {
   loadLegalCase(consultationId: number) {
     this.legalCaseService.getLegalCaseByConsultationId(consultationId).subscribe((data) => {
       this.legalCase = data;
+
+      // Check if case is closed
+      this.isCaseClosed = this.legalCase.status === 'CLOSED';
+
+      // If case is closed, show a message
+      if (this.isCaseClosed) {
+        alert('Este caso ha sido cerrado y está en modo de solo lectura.');
+      }
 
       // Obtener el objeto Consultation completo
       this.consultationService.getConsultationById(consultationId).subscribe(
