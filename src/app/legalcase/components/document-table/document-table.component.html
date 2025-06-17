@@ -1,21 +1,73 @@
-<div class="document-table">
-  <table>
-    <thead>
-    <tr>
-      <th>ID</th>
-      <th>Título</th>
-      <th>Descripción</th>
-      <th>Tipo</th>
-      <th>Estado</th>
-    </tr>
-    </thead>
-    <tbody>
-    <tr *ngFor="let document of documents">
-      <td>{{ document.title }}</td>
-      <td>{{ document.description }}</td>
-      <td>{{ document.type }}</td>
-      <td>{{ document.status }}</td>
-    </tr>
-    </tbody>
-  </table>
+<div class="document-table-container">
+  <div class="table-header">
+    <h2>Documentos del caso</h2>
+    <button class="upload-button" (click)="onUploadClick()" *ngIf="showUploadButton">
+      <span class="icon">+</span>
+      <span>Subir documento</span>
+    </button>
+  </div>
+
+  <div class="table-responsive">
+    <table class="documents-table">
+      <thead>
+      <tr>
+        <th>Título</th>
+        <th>Descripción</th>
+        <th>Tipo</th>
+        <th>Estado</th>
+        <th *ngIf="canUpdateStatus">Acciones</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let document of pagedDocuments" class="document-row">
+        <td>{{ document.title }}</td>
+        <td>{{ document.description }}</td>
+        <td><span class="tag type-tag">{{ document.type }}</span></td>
+        <td><span class="tag status-tag" [ngClass]="getStatusClass(document.status)">{{ getStatusText(document.status) }}</span></td>
+        <td *ngIf="canUpdateStatus" class="actions-cell">
+          <div class="status-actions">
+            <button class="status-btn" [ngClass]="{'active': getStatusNumber(document.status) === DocumentStatus.COMPLETED}"
+                    (click)="updateStatus(document.id, DocumentStatus.COMPLETED)" title="Completado">
+              <i class="material-icons">check_circle</i>
+            </button>
+            <button class="status-btn" [ngClass]="{'active': getStatusNumber(document.status) === DocumentStatus.DENIED}"
+                    (click)="updateStatus(document.id, DocumentStatus.DENIED)" title="Rechazado">
+              <i class="material-icons">cancel</i>
+            </button>
+            <button class="status-btn" [ngClass]="{'active': getStatusNumber(document.status) === DocumentStatus.IN_REVIEW}"
+                    (click)="updateStatus(document.id, DocumentStatus.IN_REVIEW)" title="En revisión">
+              <i class="material-icons">pending</i>
+            </button>
+          </div>
+        </td>
+      </tr>
+      <tr *ngIf="pagedDocuments.length === 0">
+        <td [attr.colspan]="canUpdateStatus ? 5 : 4" class="no-data">No hay documentos disponibles</td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="paginator">
+    <button
+      [disabled]="currentPage === 1 || documents.length === 0"
+      (click)="changePage(currentPage - 1)"
+      class="page-button">
+      &laquo; Anterior
+    </button>
+
+    <div class="page-info" *ngIf="documents.length > 0">
+      Página {{ currentPage }} de {{ totalPages }}
+    </div>
+    <div class="page-info" *ngIf="documents.length === 0">
+      No hay páginas disponibles
+    </div>
+
+    <button
+      [disabled]="currentPage === totalPages || documents.length === 0"
+      (click)="changePage(currentPage + 1)"
+      class="page-button">
+      Siguiente &raquo;
+    </button>
+  </div>
 </div>

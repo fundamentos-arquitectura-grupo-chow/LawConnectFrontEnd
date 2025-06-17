@@ -168,3 +168,32 @@
     grid-template-columns: 1fr;
   }
 }
+
+/* Estilos para los controles de filtro */
+.filter-controls {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 24px;
+  gap: 12px;
+}
+
+.filter-button {
+  background-color: #f1f1f1;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 20px;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 500;
+  color: #555;
+  transition: all 0.3s ease;
+}
+
+.filter-button:hover {
+  background-color: #e0e0e0;
+}
+
+.filter-button.active {
+  background-color: #cb2020;
+  color: white;
+}

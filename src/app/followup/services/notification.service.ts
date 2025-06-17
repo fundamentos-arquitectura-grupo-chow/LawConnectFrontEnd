@@ -35,8 +35,12 @@ export class NotificationService {
   }
 
   deleteNotification(notificationId: number): Observable<any> {
-    return this.http.delete<any>(`${this.apiUrl}/${notificationId}`, this.httpOptions)
-      .pipe(retry(2), catchError(this.handleError));
+    return this.http.delete(`${this.apiUrl}/${notificationId}`, {
+      ...this.httpOptions,
+      responseType: 'text'
+    }).pipe(
+      catchError(this.handleError)
+    );
   }
 
   private handleError(error: any) {

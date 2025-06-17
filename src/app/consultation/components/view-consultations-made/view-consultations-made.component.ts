@@ -41,6 +41,7 @@ export class ViewConsultationsMadeComponent implements OnInit {
       case 'APPROVED': return 'status-approved';
       case 'PENDING': return 'status-pending';
       case 'REJECTED': return 'status-rejected';
+      case 'Cerrado': return 'status-closed';
       default: return '';
     }
   }

@@ -10,7 +10,7 @@
       <div class="card-header">
         <span class="consultation-id">Consulta #{{ consultation.id }}</span>
         <span class="status-badge" [ngClass]="getStatusClass(consultation.applicationStatus)">
-          {{ consultation.applicationStatus }}
+        {{ consultation.applicationStatus === 'Cerrado' ? 'Cerrado' : consultation.applicationStatus }}
         </span>
       </div>
 

@@ -5,6 +5,7 @@ import { AppointmentResource } from '../../model/appointment';
 import { AuthenticationService } from '../../../iam/services/authentication.service';
 import { MatDialog } from '@angular/material/dialog';
 import { CreateAppointmentDialogComponent } from '../create-appointment-dialog/create-appointment-dialog.component';
+import { MatIconModule} from "@angular/material/icon";
 
 @Component({
   selector: 'app-face-to-face-appointment-calendar',

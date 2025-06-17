@@ -5,11 +5,12 @@
     </div>
 
     <div class="table-management">
-      <app-document-table [legalCaseId]="legalCaseId"></app-document-table>
-    </div>
-
-    <div class="actions" *ngIf="currentUserRole === '[Role(id=1, name=LAWYER)]'">
-      <button class="model" (click)="openAddDocumentDialog()">Subir Documento</button>
+      <app-document-table
+        [legalCaseId]="legalCaseId"
+        [showUploadButton]="isLawyer"
+        [canUpdateStatus]="isLawyer"
+        (uploadClick)="openAddDocumentDialog()">
+      </app-document-table>
     </div>
   </div>
 </div>

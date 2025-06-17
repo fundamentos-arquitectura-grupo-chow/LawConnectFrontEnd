@@ -14,6 +14,8 @@ export class ListLegalCasesComponent implements OnInit {
   @Input() userId: number = 0;
   @Input() userRole: string = '';
   legalCases: LegalCase[] = [];
+  filteredLegalCases: LegalCase[] = [];
+  filterType: string = 'ALL'; // Valores posibles: 'ALL', 'OPEN', 'CLOSED'
 
   constructor(
     private legalCaseService: LegalCaseService,
@@ -39,19 +41,41 @@ export class ListLegalCasesComponent implements OnInit {
 
   filterApprovedConsultations(consultations: Consultation[]): void {
     const approvedConsultations = consultations.filter(consultation => consultation.applicationStatus === 'APPROVED');
+    this.legalCases = [];
+
+    let loadedCases = 0;
     approvedConsultations.forEach(consultation => {
       this.legalCaseService.getLegalCaseByConsultationId(consultation.id).subscribe(legalCase => {
         this.legalCases.push(legalCase);
+        loadedCases++;
+
+        if (loadedCases === approvedConsultations.length) {
+          this.applyFilter();
+        }
       });
     });
   }
 
   viewLegalCase(consultationId: number): void {
-    console.log('View legal case:', this.userRole);
     if (this.userRole === 'LAWYER') {
       this.router.navigate(['/view-legal-case-lawyer', consultationId]);
     } else if (this.userRole === 'CLIENT') {
       this.router.navigate(['/view-legal-case-client', consultationId]);
     }
+  }
+
+  applyFilter(): void {
+    if (this.filterType === 'ALL') {
+      this.filteredLegalCases = [...this.legalCases];
+    } else if (this.filterType === 'OPEN') {
+      this.filteredLegalCases = this.legalCases.filter(legalCase => legalCase.status !== 'CLOSED');
+    } else if (this.filterType === 'CLOSED') {
+      this.filteredLegalCases = this.legalCases.filter(legalCase => legalCase.status === 'CLOSED');
+    }
+  }
+
+  changeFilter(filterType: string): void {
+    this.filterType = filterType;
+    this.applyFilter();
   }
 }

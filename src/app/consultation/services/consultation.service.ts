@@ -34,8 +34,8 @@ export class ConsultationService {
     return this.http.delete<void>(`${this.apiUrl}/${consultationId}`);
   }
 
-  addPaymentToConsultation(resource: AddPaymentResource): Observable<void> {
-    return this.http.post<void>(`${this.apiUrl}/payments`, resource);
+  addPaymentToConsultation(consultationId: number, resource: AddPaymentResource): Observable<void> {
+    return this.http.post<void>(`${this.apiUrl}/${consultationId}/payments`, resource);
   }
 
   approveConsultation(consultationId: number): Observable<void> {

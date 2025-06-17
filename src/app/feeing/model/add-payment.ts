@@ -3,9 +3,7 @@ export class AddPaymentResource {
   amount: number;
   currency: number;
 
-  constructor(
-    consultationId: number,
-    amount: number,
+  constructor(consultationId: number, amount: number,
     currency: number
   ) {
     this.consultationId = consultationId;

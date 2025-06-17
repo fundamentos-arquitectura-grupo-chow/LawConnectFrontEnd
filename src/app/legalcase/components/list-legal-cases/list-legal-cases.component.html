@@ -1,17 +1,29 @@
 <div class="cases-container">
-  <h2 class="section-title">Casos Legales Aprobados</h2>
+  <h2 class="section-title">Casos Legales Aprobados/Cerrados</h2>
 
-  <div *ngIf="legalCases.length === 0" class="empty-state">
-    <p>No hay casos legales disponibles en este momento.</p>
+  <div class="filter-controls">
+    <button class="filter-button" [class.active]="filterType === 'ALL'" (click)="changeFilter('ALL')">
+      Todos
+    </button>
+    <button class="filter-button" [class.active]="filterType === 'OPEN'" (click)="changeFilter('OPEN')">
+      Aprobados
+    </button>
+    <button class="filter-button" [class.active]="filterType === 'CLOSED'" (click)="changeFilter('CLOSED')">
+      Cerrados
+    </button>
+  </div>
+
+  <div *ngIf="filteredLegalCases.length === 0" class="empty-state">
+    <p>No hay casos legales disponibles con el filtro seleccionado.</p>
   </div>
 
   <div class="cases-grid">
-    <div *ngFor="let legalCase of legalCases" class="case-card">
+    <div *ngFor="let legalCase of filteredLegalCases" class="case-card">
       <div class="case-header">
         <h3 class="case-title">{{ legalCase.title }}</h3>
         <span class="case-badge" [ngClass]="{'case-badge-closed': legalCase.status === 'CLOSED'}">
-        {{ legalCase.status === 'CLOSED' ? 'Cerrado' : 'Aprobado' }}
-      </span>
+          {{ legalCase.status === 'CLOSED' ? 'Cerrado' : 'Aprobado' }}
+        </span>
       </div>
 
       <div class="case-content">

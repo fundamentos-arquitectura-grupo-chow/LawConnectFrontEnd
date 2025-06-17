@@ -1,3 +1,123 @@
+/* Estilos para el diálogo */
+.dialog-container {
+  max-width: 500px;
+}
+
+/* Encabezado del diálogo */
+.dialog-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 20px;
+  padding-bottom: 15px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+}
+
+.header-icon {
+  background: linear-gradient(135deg, #5e72e4, #7795f8);
+  color: white;
+  padding: 8px;
+  border-radius: 50%;
+  font-size: 24px;
+  height: 24px;
+  width: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Título del diálogo */
+[mat-dialog-title] {
+  margin: 0;
+  font-size: 20px;
+  font-weight: 600;
+  color: #2c3e50;
+}
+
+/* Formulario */
+.dialog-form {
+  padding: 0 5px;
+}
+
+.form-field-container {
+  margin-bottom: 16px;
+}
+
+/* Campos del formulario */
 mat-form-field {
   width: 100%;
+}
+
+::ng-deep .mat-form-field-outline {
+  border-radius: 10px;
+}
+
+::ng-deep .mat-form-field-flex {
+  background-color: #f8f9fa;
+}
+
+::ng-deep .mat-form-field-outline-start,
+::ng-deep .mat-form-field-outline-end,
+::ng-deep .mat-form-field-outline-gap {
+  border-width: 1px !important;
+}
+
+::ng-deep .mat-form-field.mat-focused .mat-form-field-outline {
+  color: #5e72e4;
+}
+
+/* Indicador de carga */
+.loading-indicator {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  margin: 15px 0;
+  color: #5e72e4;
+}
+
+/* Mensaje de error */
+.error-message {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 15px 0;
+  padding: 12px;
+  border-radius: 8px;
+  background-color: rgba(231, 76, 60, 0.1);
+  color: #e74c3c;
+}
+
+/* Botones de acción */
+.dialog-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 12px;
+  padding-top: 15px;
+  margin-top: 20px;
+  border-top: 1px solid rgba(0, 0, 0, 0.08);
+}
+
+.cancel-button {
+  color: #7f8c8d;
+}
+
+.create-button {
+  background: linear-gradient(135deg, #5e72e4, #7795f8);
+  color: white;
+  box-shadow: 0 4px 10px rgba(94, 114, 228, 0.3);
+  transition: all 0.3s ease;
+}
+
+.create-button:hover:not([disabled]) {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 15px rgba(94, 114, 228, 0.4);
+}
+
+.create-button:disabled {
+  opacity: 0.7;
+}
+
+button mat-icon {
+  margin-right: 8px;
 }

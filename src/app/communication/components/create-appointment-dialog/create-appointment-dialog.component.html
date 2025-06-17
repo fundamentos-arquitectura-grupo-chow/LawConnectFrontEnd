@@ -1,15 +1,33 @@
-<h1 mat-dialog-title>Create Appointment</h1>
-<div mat-dialog-content>
-  <mat-form-field appearance="fill">
-    <mat-label>Description</mat-label>
-    <input matInput [(ngModel)]="description">
-  </mat-form-field>
-  <mat-form-field appearance="fill">
-    <mat-label>Location</mat-label>
-    <input matInput [(ngModel)]="location">
-  </mat-form-field>
-</div>
-<div mat-dialog-actions>
-  <button mat-button (click)="onCancel()">Cancel</button>
-  <button mat-button color="primary" (click)="onCreate()">Create</button>
+<div class="dialog-container">
+  <div class="dialog-header">
+    <mat-icon class="header-icon">event_available</mat-icon>
+    <h1 mat-dialog-title>Nueva Cita</h1>
+  </div>
+
+  <div mat-dialog-content class="dialog-content">
+    <p class="dialog-subtitle">Complete los detalles para agendar una nueva cita</p>
+
+    <mat-form-field appearance="outline" class="form-field">
+      <mat-label>Descripción</mat-label>
+      <input matInput [(ngModel)]="description" placeholder="Ej: Revisión de documentos">
+      <mat-icon matPrefix>description</mat-icon>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" class="form-field">
+      <mat-label>Ubicación</mat-label>
+      <input matInput [(ngModel)]="location" placeholder="Ej: Oficina central">
+      <mat-icon matPrefix>location_on</mat-icon>
+    </mat-form-field>
+  </div>
+
+  <div mat-dialog-actions class="dialog-actions">
+    <button mat-button class="cancel-button" (click)="onCancel()">
+      <mat-icon>close</mat-icon>
+      <span>Cancelar</span>
+    </button>
+    <button mat-flat-button class="create-button" (click)="onCreate()">
+      <mat-icon>check</mat-icon>
+      <span>Crear Cita</span>
+    </button>
+  </div>
 </div>

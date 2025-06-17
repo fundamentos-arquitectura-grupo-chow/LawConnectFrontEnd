@@ -73,7 +73,9 @@ import { AddTypeLawyerComponent } from './profile/components/add-type-lawyer/add
 import { CreateAppointmentDialogComponent } from './communication/components/create-appointment-dialog/create-appointment-dialog.component';
 import {MatList, MatListItem} from "@angular/material/list";
 import { CreateVideoCallDialogComponent } from './communication/components/create-video-call-dialog/create-video-call-dialog.component';
-
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
+import { CompletePaymentComponent } from './feeing/components/complete-payment/complete-payment.component';
 
 @NgModule({
   declarations: [
@@ -122,7 +124,8 @@ import { CreateVideoCallDialogComponent } from './communication/components/creat
     CompleteSignUpLawyerComponent,
     AddTypeLawyerComponent,
     CreateAppointmentDialogComponent,
-    CreateVideoCallDialogComponent
+    CreateVideoCallDialogComponent,
+    CompletePaymentComponent
   ],
   imports: [
     BrowserModule,
@@ -147,6 +150,9 @@ import { CreateVideoCallDialogComponent } from './communication/components/creat
     MatOption,
     MatListItem,
     MatList,
+    ReactiveFormsModule,
+    MatDatepickerModule,
+    MatProgressSpinnerModule
   ],
   providers: [
     provideAnimationsAsync(),

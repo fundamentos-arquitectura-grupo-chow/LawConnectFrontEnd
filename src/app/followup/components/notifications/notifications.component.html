@@ -4,15 +4,40 @@
 
   <!-- Notifications Content -->
   <div class="notifications-content">
-    <div class="notifications-list">
-      <div *ngFor="let notification of notifications" class="notification-item">
-        <mat-icon class="case-logo">notifications</mat-icon>
-        <div class="case-details">
-          <h6>{{ notification.title }}</h6>
-          <p>{{ notification.description }}</p>
+    <div class="notifications-header">
+      <h2>Notificaciones</h2>
+      <span class="notification-count">{{ notifications.length }}</span>
+    </div>
+
+    <div class="filter-buttons">
+      <button [class.active]="activeFilter === 'all'" (click)="filterNotifications('all')">Todas</button>
+      <button [class.active]="activeFilter === 'unread'" (click)="filterNotifications('unread')">No leídas</button>
+    </div>
+
+    <div class="notifications-list" *ngIf="filteredNotifications.length > 0; else emptyState">
+      <div *ngFor="let notification of filteredNotifications"
+           class="notification-item"
+           [class.read]="isRead(notification)"
+           (click)="markAsRead(notification)">
+        <div class="notification-icon">
+          <mat-icon>notifications</mat-icon>
         </div>
+        <div class="notification-details">
+          <h3>{{ notification.title }}</h3>
+          <p>{{ notification.description }}</p>
+          <span class="notification-time">{{ getTimeAgo(notification) }}</span>
+        </div>
+        <button class="notification-action" (click)="deleteNotification(notification.id); $event.stopPropagation()">
+          <mat-icon>close</mat-icon>
+        </button>
       </div>
     </div>
+
+    <ng-template #emptyState>
+      <div class="empty-state">
+        <mat-icon>notifications_off</mat-icon>
+        <p>No tienes notificaciones</p>
+      </div>
+    </ng-template>
   </div>
 </div>
-

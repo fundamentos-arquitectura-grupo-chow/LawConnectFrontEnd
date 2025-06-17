@@ -1,7 +1,7 @@
-import { AddPayment } from './add-payment';
+import { AddPaymentResource } from "./add-payment";
 
 describe('AddPayment', () => {
   it('should create an instance', () => {
-    expect(new AddPayment()).toBeTruthy();
+    expect(new AddPaymentResource()).toBeTruthy();
   });
 });
