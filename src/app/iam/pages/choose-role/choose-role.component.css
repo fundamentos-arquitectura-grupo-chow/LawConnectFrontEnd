@@ -1,45 +1,190 @@
 .choose-role-container {
-  width: 400px;
-  margin: 0 auto;
-  padding: 20px;
+  max-width: 480px;
+  margin: 60px auto;
+  padding: 2.5rem;
   text-align: center;
-  background-color: white;
-  border-radius: 10px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%);
+  border-radius: 16px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1), 0 4px 12px rgba(0, 0, 0, 0.05);
+  position: relative;
+  overflow: hidden;
+}
+
+.choose-role-container::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, #b82121, #e74c3c);
 }
 
 h1 {
-  font-size: 24px;
-  margin-bottom: 10px;
-  font-weight: bold;
-  color: #4B4B4B;
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+  font-weight: 700;
+  background: linear-gradient(135deg, #b82121, #e74c3c);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  position: relative;
 }
 
-p {
-  font-size: 14px;
-  color: #6A6A6A;
-  margin: 10px 0;
+h1::after {
+  content: '';
+  position: absolute;
+  bottom: -8px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 60px;
+  height: 3px;
+  background: linear-gradient(90deg, #b82121, #e74c3c);
+  border-radius: 2px;
+}
+
+.choose-role-container > p {
+  font-size: 1.2rem;
+  color: #2c3e50;
+  margin: 1.5rem 0 2rem;
+  font-weight: 500;
 }
 
 .button-group {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 15px;
+  gap: 2rem;
+}
+
+.role-option {
+  width: 100%;
+  background: white;
+  border-radius: 12px;
+  padding: 1.8rem;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  transition: all 0.3s ease;
+  border: 2px solid transparent;
+  position: relative;
+  overflow: hidden;
+}
+
+.role-option:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 25px rgba(184, 33, 33, 0.15);
+  border-color: #b82121;
+}
+
+.role-option::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(184, 33, 33, 0.03), transparent);
+  transition: left 0.5s;
+}
+
+.role-option:hover::before {
+  left: 100%;
 }
 
 button {
   width: 100%;
-  padding: 10px;
-  background-color: #4B4B4B;
+  padding: 1.2rem 1.5rem;
+  background: linear-gradient(135deg, #b82121, #e74c3c);
   color: white;
-  font-size: 16px;
+  font-size: 1.1rem;
+  font-weight: 600;
   border: none;
-  border-radius: 5px;
+  border-radius: 8px;
   cursor: pointer;
-  font-weight: bold;
+  transition: all 0.3s ease;
+  margin-bottom: 1rem;
+  position: relative;
+  overflow: hidden;
+}
+
+button::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+  transition: left 0.5s;
+}
+
+button:hover::before {
+  left: 100%;
 }
 
 button:hover {
-  background-color: #676666;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(184, 33, 33, 0.3);
+}
+
+button:active {
+  transform: translateY(0);
+}
+
+.role-option p {
+  font-size: 0.95rem;
+  color: #7f8c8d;
+  margin: 0;
+  line-height: 1.5;
+  text-align: left;
+}
+
+/* Icons for each role */
+.role-option:first-of-type::after {
+  content: '👤';
+  position: absolute;
+  top: 1.5rem;
+  right: 1.5rem;
+  font-size: 1.5rem;
+  opacity: 0.3;
+}
+
+.role-option:last-of-type::after {
+  content: '⚖️';
+  position: absolute;
+  top: 1.5rem;
+  right: 1.5rem;
+  font-size: 1.5rem;
+  opacity: 0.3;
+}
+
+/* Responsive design */
+@media (max-width: 480px) {
+  .choose-role-container {
+    width: 90%;
+    margin: 20px auto;
+    padding: 1.5rem;
+  }
+
+  h1 {
+    font-size: 2rem;
+  }
+
+  .button-group {
+    gap: 1.5rem;
+  }
+
+  .role-option {
+    padding: 1.5rem;
+  }
+
+  button {
+    padding: 1rem;
+    font-size: 1rem;
+  }
+}
+
+/* Focus visible for accessibility */
+button:focus-visible {
+  outline: 2px solid #b82121;
+  outline-offset: 2px;
 }

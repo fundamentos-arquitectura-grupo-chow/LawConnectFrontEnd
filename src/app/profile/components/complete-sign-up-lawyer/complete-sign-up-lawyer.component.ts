@@ -34,7 +34,7 @@ export class CompleteSignUpLawyerComponent {
     @Inject(MAT_DIALOG_DATA) public data: { lawyerId: number }
   ) {
     this.form = this.fb.group({
-      specialty: [null, Validators.required],
+      specialty: ['', Validators.required],
       price: [null, [Validators.required, Validators.min(0)]]
     });
   }
@@ -44,7 +44,7 @@ export class CompleteSignUpLawyerComponent {
       const { specialty, price } = this.form.value;
       const lawyerId = this.data.lawyerId;
 
-      const addLawyerTypeResource: AddLawyerTypeResource = { lawyerId, lawyerTypeId: specialty };
+      const addLawyerTypeResource: AddLawyerTypeResource = { lawyerId, lawyerTypeId: Number(specialty) };
       const addLawyerPricesResource: AddLawyerPricesResource = { lawyerId, price };
 
       this.lawyerService.addLawyerType(addLawyerTypeResource).subscribe(() => {

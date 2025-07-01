@@ -1,14 +1,14 @@
 <div class="sign-up-client-container">
   <h1>LawConnect</h1>
-  <form (ngSubmit)="signUp()">
+  <form #signUpForm="ngForm" (ngSubmit)="signUp()">
     <input type="email" placeholder="Correo electrónico" [(ngModel)]="email" name="email" required>
-    <input type="text" placeholder="Nombre Completo" [(ngModel)]="firstName" name="firstName" required>
-    <input type="text" placeholder="Apellido" [(ngModel)]="lastName" name="lastName" required>
+    <input type="text" placeholder="Nombres" [(ngModel)]="firstName" name="firstName" required>
+    <input type="text" placeholder="Apellidos" [(ngModel)]="lastName" name="lastName" required>
     <input type="text" placeholder="DNI" [(ngModel)]="dni" name="dni" required>
     <input type="text" placeholder="Número de Teléfono" [(ngModel)]="phoneNumber" name="phoneNumber" required>
     <input type="text" placeholder="Dirección" [(ngModel)]="address" name="address" required>
     <input type="password" placeholder="Contraseña" [(ngModel)]="password" name="password" required>
-    <button type="submit" >Registrarse</button>
+    <button type="submit" [disabled]="!signUpForm.valid">Registrarse</button>
   </form>
   <a (click)="navigateTo('sign-in')">¿Tienes una cuenta? <span class="blue-link">Inicia Sesión</span></a>
 </div>

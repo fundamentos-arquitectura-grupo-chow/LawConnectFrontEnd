@@ -58,7 +58,7 @@ import { ListLegalCasesComponent } from './legalcase/components/list-legal-cases
 import { CasesComponent } from './legalcase/pages/cases/cases.component';
 import { LastLegalCasesComponent } from './legalcase/components/last-legal-cases/last-legal-cases.component';
 import { LawyerSearchComponent } from './profile/components/lawyer-search/lawyer-search.component';
-import {MatSelect} from "@angular/material/select";
+import {MatSelect, MatSelectTrigger} from "@angular/material/select";
 import { LawyerProfileComponent } from './profile/pages/lawyer-profile/lawyer-profile.component';
 import {ChatroomComponent} from "./communication/components/chatroom/chatroom.component";
 import {
@@ -152,7 +152,8 @@ import { CompletePaymentComponent } from './feeing/components/complete-payment/c
     MatList,
     ReactiveFormsModule,
     MatDatepickerModule,
-    MatProgressSpinnerModule
+    MatProgressSpinnerModule,
+    MatSelectTrigger
   ],
   providers: [
     provideAnimationsAsync(),

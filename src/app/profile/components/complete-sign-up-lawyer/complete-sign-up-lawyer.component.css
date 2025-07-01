@@ -1,56 +1,435 @@
-/* Configuración básica del diálogo */
-::ng-deep .mat-dialog-container {
-  min-width: 500px !important;
-  padding: 25px !important;
-}
-
-/* Título estilizado */
-h1 {
-  color: #000000;
-  text-align: center;
-  font-weight: 700;
-  font-size: 1.8rem;
+/* Container principal */
+.signup-container {
+  background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 50%, #ffffff 100%);
+  border-radius: 20px;
+  overflow: hidden;
   position: relative;
-  padding-bottom: 15px;
-  margin-bottom: 25px;
+  min-height: 500px;
 }
 
-h1:after {
-  content: "";
+.signup-container::before {
+  content: '';
   position: absolute;
-  bottom: 0;
-  left: 50%;
-  transform: translateX(-50%);
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, #cb2020, #e84545, #ff6b6b, #cb2020);
+  background-size: 200% 100%;
+  animation: gradientShift 3s ease-in-out infinite;
+}
+
+@keyframes gradientShift {
+  0%, 100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+}
+
+/* Header Section */
+.header-section {
+  text-align: center;
+  padding: 40px 40px 20px 40px;
+  position: relative;
+}
+
+.icon-wrapper {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
   width: 80px;
-  height: 3px;
-  background: linear-gradient(90deg, #cb2020, #d69b9b);
+  height: 80px;
+  background: linear-gradient(135deg, #cb2020, #e84545);
+  border-radius: 50%;
+  margin-bottom: 20px;
+  box-shadow: 0 8px 32px rgba(203, 32, 32, 0.3);
+  position: relative;
+  overflow: hidden;
+}
+
+.icon-wrapper::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: conic-gradient(transparent, rgba(255, 255, 255, 0.3), transparent);
+  animation: rotate 2s linear infinite;
+}
+
+@keyframes rotate {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.profile-icon {
+  font-size: 40px;
+  width: 40px;
+  height: 40px;
+  color: white;
+  z-index: 1;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 1;
+}
+
+h1 {
+  font-size: 2.2rem;
+  font-weight: 700;
+  background: linear-gradient(135deg, #1a1a1a, #333);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  margin: 0 0 10px 0;
+  letter-spacing: -0.5px;
+}
+
+.subtitle {
+  color: #666;
+  font-size: 1rem;
+  margin: 0;
+  font-weight: 400;
+}
+
+/* Form Section */
+.form-section {
+  padding: 0 40px 20px 40px;
+}
+
+.form-group {
+  margin-bottom: 30px;
+  position: relative;
+}
+
+.form-label {
+  display: block;
+  color: #333;
+  font-weight: 600;
+  font-size: 0.95rem;
+  margin-bottom: 8px;
+  position: relative;
+  padding-left: 12px;
+}
+
+.form-label::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 4px;
+  height: 16px;
+  background: linear-gradient(135deg, #cb2020, #e84545);
   border-radius: 2px;
 }
 
-/* Campos de formulario */
-mat-form-field {
+/* Native Select Styling */
+.custom-select-wrapper {
+  position: relative;
   width: 100%;
-  margin-bottom: 15px;
 }
 
-::ng-deep .mat-form-field-appearance-outline .mat-form-field-outline {
-  color: #cfd9db;
+.custom-select-native {
+  width: 100%;
+  height: 56px;
+  padding: 16px 50px 16px 16px;
+  border: 2px solid #e0e0e0;
+  border-radius: 14px;
+  font-size: 1rem;
+  font-weight: 500;
+  color: #333;
+  background: white;
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-family: inherit;
 }
 
-::ng-deep .mat-form-field-appearance-outline.mat-focused .mat-form-field-outline {
+.custom-select-native:focus {
+  outline: none;
+  border-color: #cb2020;
+  box-shadow: 0 0 0 3px rgba(203, 32, 32, 0.1);
+}
+
+.custom-select-native:invalid {
+  color: #999;
+}
+
+.custom-select-native option {
+  padding: 12px;
+  font-weight: 500;
+  color: #333;
+  background: white;
+}
+
+.custom-select-native option:first-child {
+  color: #999;
+}
+
+.select-arrow {
+  position: absolute;
+  right: 16px;
+  top: 50%;
+  transform: translateY(-50%);
   color: #cb2020;
+  pointer-events: none;
+  font-size: 24px;
+  transition: transform 0.3s ease;
 }
 
-/* Botones */
-mat-dialog-actions {
+.custom-select-wrapper:hover .select-arrow {
+  transform: translateY(-50%) scale(1.1);
+}
+
+/* Native Input Styling */
+.custom-input-wrapper {
+  position: relative;
+  width: 100%;
   display: flex;
-  justify-content: flex-end;
-  gap: 15px;
-  margin-top: 20px;
+  align-items: center;
+  border: 2px solid #e0e0e0;
+  border-radius: 14px;
+  background: white;
+  transition: all 0.3s ease;
 }
 
-button[mat-button]:last-child {
-  background-color: #cb2020;
+.custom-input-wrapper:focus-within {
+  border-color: #cb2020;
+  box-shadow: 0 0 0 3px rgba(203, 32, 32, 0.1);
+}
+
+.custom-input-native {
+  flex: 1;
+  height: 56px;
+  padding: 16px 12px;
+  border: none;
+  background: transparent;
+  font-size: 1rem;
+  font-weight: 500;
+  color: #333;
+  outline: none;
+  font-family: inherit;
+}
+
+.custom-input-native::placeholder {
+  color: #999;
+  font-weight: 400;
+}
+
+.custom-input-native::-webkit-outer-spin-button,
+.custom-input-native::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.custom-input-native[type=number] {
+  -moz-appearance: textfield;
+}
+
+.currency-prefix {
+  color: #cb2020;
+  font-weight: 600;
+  font-size: 1rem;
+  padding-left: 16px;
+  margin-right: 4px;
+}
+
+.price-suffix {
+  font-size: 0.85rem;
+  color: #666;
+  padding-right: 16px;
+  margin-left: 4px;
+  font-weight: 500;
+}
+
+/* Action Buttons */
+.action-buttons {
+  display: flex;
+  gap: 16px;
+  margin-top: 40px;
+  justify-content: center;
+}
+
+.btn-secondary,
+.btn-primary {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 14px 28px;
+  border-radius: 12px;
+  font-weight: 600;
+  font-size: 1rem;
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  min-width: 140px;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+  font-family: inherit;
+}
+
+.btn-secondary {
+  background: #f8f9fa;
+  color: #666;
+  border: 2px solid #e0e0e0;
+}
+
+.btn-secondary:hover {
+  background: #e9ecef;
+  border-color: #ced4da;
+  color: #495057;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.btn-primary {
+  background: linear-gradient(135deg, #cb2020, #e84545);
   color: white;
-  min-width: 100px;
+  box-shadow: 0 6px 20px rgba(203, 32, 32, 0.3);
+}
+
+.btn-primary::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+  transition: left 0.6s;
+}
+
+.btn-primary:hover::before {
+  left: 100%;
+}
+
+.btn-primary:hover {
+  background: linear-gradient(135deg, #a61a1a, #cb2020);
+  box-shadow: 0 8px 25px rgba(203, 32, 32, 0.4);
+  transform: translateY(-2px);
+}
+
+.btn-primary:disabled {
+  background: #ccc;
+  color: #666;
+  box-shadow: none;
+  transform: none;
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+.btn-primary:disabled::before {
+  display: none;
+}
+
+.btn-primary:disabled:hover {
+  background: #ccc;
+  transform: none;
+  box-shadow: none;
+}
+
+/* Dialog Container Override */
+::ng-deep .mat-dialog-container {
+  padding: 0 !important;
+  border-radius: 20px !important;
+  box-shadow: 0 25px 80px rgba(203, 32, 32, 0.15) !important;
+  max-width: 550px !important;
+  min-width: 500px !important;
+  overflow: hidden !important;
+}
+
+/* Responsive Design */
+@media (max-width: 600px) {
+  ::ng-deep .mat-dialog-container {
+    min-width: 90vw !important;
+    margin: 20px !important;
+  }
+
+  .header-section,
+  .form-section {
+    padding-left: 25px;
+    padding-right: 25px;
+  }
+
+  h1 {
+    font-size: 1.8rem;
+  }
+
+  .action-buttons {
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .btn-secondary,
+  .btn-primary {
+    width: 100%;
+    min-width: unset;
+  }
+
+  .icon-wrapper {
+    width: 60px;
+    height: 60px;
+  }
+
+  .profile-icon {
+    font-size: 30px;
+    width: 30px;
+    height: 30px;
+  }
+
+  .custom-select-native,
+  .custom-input-native {
+    height: 48px;
+    font-size: 0.95rem;
+  }
+
+  .custom-select-native {
+    padding: 14px 45px 14px 14px;
+  }
+
+  .select-arrow {
+    font-size: 20px;
+    right: 14px;
+  }
+}
+
+/* Hover effects for form elements */
+.custom-select-wrapper:hover .custom-select-native {
+  border-color: rgba(203, 32, 32, 0.3);
+}
+
+.custom-input-wrapper:hover {
+  border-color: rgba(203, 32, 32, 0.3);
+}
+
+/* Focus states */
+.custom-select-native:focus,
+.custom-input-native:focus {
+  transition: all 0.2s ease;
+}
+
+/* Smooth transitions for all elements */
+* {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Remove default focus outline for custom elements */
+.custom-select-native:focus,
+.custom-input-native:focus,
+.btn-secondary:focus,
+.btn-primary:focus {
+  outline: none;
+}
+
+/* Enhanced accessibility */
+.custom-select-native:focus-visible,
+.custom-input-native:focus-visible,
+.btn-secondary:focus-visible,
+.btn-primary:focus-visible {
+  outline: 2px solid #cb2020;
+  outline-offset: 2px;
 }

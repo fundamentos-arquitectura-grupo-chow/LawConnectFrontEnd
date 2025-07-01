@@ -1,49 +1,42 @@
 <mat-toolbar>
-  <button mat-button class="search-button">
-    <mat-icon>search</mat-icon>
-  </button>
+  <div class="logo-container">
+    <img src="assets/images/logo.png" alt="Logo" class="logo">
+  </div>
 
-  <mat-form-field appearance="outline" class="search-bar">
-    <input matInput placeholder="Buscar">
-  </mat-form-field>
+  <div class="nav-buttons">
+    <button *ngIf="userRole === 'LAWYER'" mat-button class="nav-btn" [routerLink]="['/home-lawyer']">
+      <mat-icon>home</mat-icon>
+      <span>Inicio</span>
+    </button>
 
-  <span class="toolbar-spacer"></span>
+    <button *ngIf="userRole === 'CLIENT'" mat-button class="nav-btn" [routerLink]="['/home-client']">
+      <mat-icon>home</mat-icon>
+      <span>Inicio</span>
+    </button>
 
-  <button *ngIf="userRole === 'LAWYER'" mat-button class="btn" [routerLink]="['/home-lawyer']">
-    <mat-icon>home</mat-icon>
-    Inicio
-  </button>
+    <button *ngIf="userRole === 'CLIENT'" mat-button class="nav-btn" [routerLink]="['/notifications']">
+      <mat-icon>notifications</mat-icon>
+      <span>Notificaciones</span>
+    </button>
 
-  <button *ngIf="userRole === 'CLIENT'" mat-button class="btn" [routerLink]="['/home-client']">
-    <mat-icon>home</mat-icon>
-    Inicio
-  </button>
+    <button *ngIf="userRole === 'LAWYER'" mat-button class="nav-btn" (click)="openAddSpecialtyDialog()">
+      <mat-icon>add_circle</mat-icon>
+      <span>Agregar especialidad</span>
+    </button>
 
-  <button *ngIf="userRole === 'CLIENT'" mat-button class="btn" [routerLink]="['/notifications']">
-    <mat-icon>notifications</mat-icon>
-    Notificaciones
-  </button>
+    <button mat-button class="nav-btn" [routerLink]="['/cases']">
+      <mat-icon>work</mat-icon>
+      <span>Casos</span>
+    </button>
 
-  <button *ngIf="userRole === 'LAWYER'" mat-button class="btn" (click)="openAddSpecialtyDialog()">
-    <mat-icon>notifications</mat-icon>
-    Agregar especialidad
-  </button>
+    <button *ngIf="userRole === 'LAWYER'" mat-button class="nav-btn" [routerLink]="['/consultations']">
+      <mat-icon>gavel</mat-icon>
+      <span>Ver solicitudes</span>
+    </button>
 
-  <button mat-button class="btn" [routerLink]="['/cases']">
-    <mat-icon>work</mat-icon>
-    Casos
-  </button>
-
-  <button *ngIf="userRole === 'LAWYER'" mat-button class="btn" [routerLink]="['/consultations']">
-    <mat-icon>gavel</mat-icon>
-    Ver solicitudes
-  </button>
-
-  <button *ngIf="userRole === 'CLIENT'" mat-button class="btn" [routerLink]="['/lawyer-search']">
-    <mat-icon>gavel</mat-icon>
-    Buscar abogados
-  </button>
-
-
-
+    <button *ngIf="userRole === 'CLIENT'" mat-button class="nav-btn" [routerLink]="['/lawyer-search']">
+      <mat-icon>search</mat-icon>
+      <span>Buscar abogados</span>
+    </button>
+  </div>
 </mat-toolbar>

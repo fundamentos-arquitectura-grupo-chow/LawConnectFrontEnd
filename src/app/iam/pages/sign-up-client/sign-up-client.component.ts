@@ -18,24 +18,28 @@ export class SignUpClientComponent {
   dni: string = '';
   imageUrl: string = 'https://st2.depositphotos.com/19428878/44645/v/450/depositphotos_446453832-stock-illustration-default-avatar-profile-icon-social.jpg';
 
-  constructor(private router: Router, private authService: AuthenticationService) {}
+  constructor(private router: Router, private authService: AuthenticationService) {
+  }
 
   navigateTo(route: string) {
     this.router.navigate([`/${route}`]);
   }
 
   signUp() {
-    const signUpRequest = new SignUpRequest(
-      this.email,
-      this.password,
-      ['CLIENT'],
-      this.firstName,
-      this.lastName,
-      this.phoneNumber,
-      this.address,
-      this.dni,
-      this.imageUrl
-    );
-    this.authService.signUp(signUpRequest);
+    if (this.email && this.password && this.firstName && this.lastName &&
+      this.phoneNumber && this.address && this.dni) {
+      const signUpRequest = new SignUpRequest(
+        this.email,
+        this.password,
+        ['CLIENT'],
+        this.firstName,
+        this.lastName,
+        this.phoneNumber,
+        this.address,
+        this.dni,
+        this.imageUrl
+      );
+      this.authService.signUp(signUpRequest);
+    }
   }
 }

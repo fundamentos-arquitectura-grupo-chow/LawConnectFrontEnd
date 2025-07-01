@@ -2,10 +2,14 @@
   <h1>LawConnect</h1>
   <p>Escoge una opción:</p>
   <div class="button-group">
-    <button (click)="selectRole('cliente')">Cliente</button>
-    <p>Como cliente podrás escoger dentro de una gran variedad de abogados para tu caso</p>
+    <div class="role-option">
+      <button (click)="selectRole('cliente')">Cliente</button>
+      <p>Como cliente podrás escoger dentro de una gran variedad de abogados para tu caso</p>
+    </div>
 
-    <button (click)="selectRole('abogado')">Abogado</button>
-    <p>Como abogado podrás ofrecer tus servicios y conectar con diferentes clientes</p>
+    <div class="role-option">
+      <button (click)="selectRole('abogado')">Abogado</button>
+      <p>Como abogado podrás ofrecer tus servicios y conectar con diferentes clientes</p>
+    </div>
   </div>
 </div>
