@@ -17,27 +17,47 @@
     <p>No hay casos legales disponibles con el filtro seleccionado.</p>
   </div>
 
-  <div class="cases-grid">
-    <div *ngFor="let legalCase of filteredLegalCases" class="case-card">
-      <div class="case-header">
-        <h3 class="case-title">{{ legalCase.title }}</h3>
-        <span class="case-badge" [ngClass]="{'case-badge-closed': legalCase.status === 'CLOSED'}">
-          {{ legalCase.status === 'CLOSED' ? 'Cerrado' : 'Aprobado' }}
-        </span>
+  <div *ngIf="filteredLegalCases.length > 0">
+    <div class="cases-grid-container">
+      <div class="cases-grid">
+        <div *ngFor="let legalCase of paginatedLegalCases" class="case-card">
+          <div class="case-header">
+            <h3 class="case-title">{{ legalCase.title }}</h3>
+            <span class="case-badge" [ngClass]="{'case-badge-closed': legalCase.status === 'CLOSED'}">
+              {{ legalCase.status === 'CLOSED' ? 'Cerrado' : 'Aprobado' }}
+            </span>
+          </div>
+
+          <div class="case-content">
+            <p class="case-description">{{ legalCase.description | slice:0:150 }}{{ legalCase.description.length > 150 ? '...' : '' }}</p>
+          </div>
+
+          <div class="case-footer">
+            <button class="view-button" (click)="viewLegalCase(legalCase.id)">
+              <span class="button-text">Ver detalles</span>
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M5 12h14M12 5l7 7-7 7"/>
+              </svg>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Controles de paginación -->
+    <div class="pagination-controls" *ngIf="filteredLegalCases.length > pageSize">
+      <button class="pagination-button" [disabled]="currentPage === 0" (click)="previousPage()">
+        ← Anterior
+      </button>
+
+      <div class="pagination-info">
+        Página {{ currentPage + 1 }} de {{ totalPages }}
+        ({{ filteredLegalCases.length }} casos totales)
       </div>
 
-      <div class="case-content">
-        <p class="case-description">{{ legalCase.description }}</p>
-      </div>
-
-      <div class="case-footer">
-        <button class="view-button" (click)="viewLegalCase(legalCase.id)">
-          <span class="button-text">Ver detalles</span>
-          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M5 12h14M12 5l7 7-7 7"/>
-          </svg>
-        </button>
-      </div>
+      <button class="pagination-button" [disabled]="currentPage >= totalPages - 1" (click)="nextPage()">
+        Siguiente →
+      </button>
     </div>
   </div>
 </div>

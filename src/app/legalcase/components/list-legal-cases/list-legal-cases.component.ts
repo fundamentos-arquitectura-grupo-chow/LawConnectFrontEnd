@@ -15,7 +15,13 @@ export class ListLegalCasesComponent implements OnInit {
   @Input() userRole: string = '';
   legalCases: LegalCase[] = [];
   filteredLegalCases: LegalCase[] = [];
-  filterType: string = 'ALL'; // Valores posibles: 'ALL', 'OPEN', 'CLOSED'
+  paginatedLegalCases: LegalCase[] = [];
+  filterType: string = 'ALL';
+
+
+  currentPage: number = 0;
+  pageSize: number = 6; //
+  totalPages: number = 0;
 
   constructor(
     private legalCaseService: LegalCaseService,
@@ -72,10 +78,38 @@ export class ListLegalCasesComponent implements OnInit {
     } else if (this.filterType === 'CLOSED') {
       this.filteredLegalCases = this.legalCases.filter(legalCase => legalCase.status === 'CLOSED');
     }
+
+    this.updatePagination();
   }
 
   changeFilter(filterType: string): void {
     this.filterType = filterType;
+    this.currentPage = 0;
     this.applyFilter();
+  }
+
+  updatePagination(): void {
+    this.totalPages = Math.ceil(this.filteredLegalCases.length / this.pageSize);
+    this.updatePaginatedCases();
+  }
+
+  updatePaginatedCases(): void {
+    const startIndex = this.currentPage * this.pageSize;
+    const endIndex = startIndex + this.pageSize;
+    this.paginatedLegalCases = this.filteredLegalCases.slice(startIndex, endIndex);
+  }
+
+  nextPage(): void {
+    if (this.currentPage < this.totalPages - 1) {
+      this.currentPage++;
+      this.updatePaginatedCases();
+    }
+  }
+
+  previousPage(): void {
+    if (this.currentPage > 0) {
+      this.currentPage--;
+      this.updatePaginatedCases();
+    }
   }
 }

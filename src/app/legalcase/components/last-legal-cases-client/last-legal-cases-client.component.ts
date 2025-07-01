@@ -7,12 +7,12 @@ import { forkJoin } from 'rxjs';
 import { Router } from '@angular/router';
 
 @Component({
-  selector: 'app-last-legal-cases',
-  templateUrl: './last-legal-cases.component.html',
-  styleUrls: ['./last-legal-cases.component.css']
+  selector: 'app-last-legal-cases-client',
+  templateUrl: './last-legal-cases-client.component.html',
+  styleUrls: ['./last-legal-cases-client.component.css']
 })
-export class LastLegalCasesComponent implements OnInit, OnChanges {
-  @Input() lawyerId: number = 0;
+export class LastLegalCasesClientComponent implements OnInit, OnChanges {
+  @Input() clientId: number = 0;
   legalCases: LegalCase[] = [];
 
   constructor(
@@ -22,20 +22,18 @@ export class LastLegalCasesComponent implements OnInit, OnChanges {
   ) {}
 
   ngOnInit(): void {
-    if (this.lawyerId > 0) {
-      this.loadLegalCases();
-    }
+    // No llamar aquí para evitar carga antes de recibir clientId
   }
 
   ngOnChanges(changes: SimpleChanges): void {
-    if (changes['lawyerId'] && changes['lawyerId'].currentValue !== changes['lawyerId'].previousValue && this.lawyerId > 0) {
+    if (changes['clientId'] && changes['clientId'].currentValue) {
       this.loadLegalCases();
     }
   }
 
   loadLegalCases(): void {
     this.legalCases = [];
-    this.consultationService.getAllConsultationsByLawyerId(this.lawyerId).subscribe(consultations => {
+    this.consultationService.getAllConsultationsByClientId(this.clientId).subscribe(consultations => {
       const approvedConsultations = consultations.filter(consultation => consultation.applicationStatus === 'APPROVED');
 
       if (approvedConsultations.length === 0) {
@@ -48,19 +46,16 @@ export class LastLegalCasesComponent implements OnInit, OnChanges {
 
       forkJoin(legalCaseObservables).subscribe(legalCases => {
         const uniqueCases = legalCases.filter((legalCase, index, self) =>
-          index === self.findIndex(c => c.id === legalCase.id)
-        );
+          index === self.findIndex(t => t.id === legalCase.id)
+        ).sort((a, b) => b.id - a.id).slice(0, 5); // Limitar a 5 casos
 
-        // Ordenar por ID descendente y tomar solo los últimos 5
-        this.legalCases = uniqueCases
-          .sort((a, b) => b.id - a.id)
-          .slice(0, 5);
+        this.legalCases = uniqueCases;
       });
     });
   }
 
   viewLegalCase(consultationId: number): void {
-    this.router.navigate(['/view-legal-case-lawyer', consultationId]);
+    this.router.navigate(['/view-legal-case-client', consultationId]);
   }
 
   getStatusClass(status: string): string {

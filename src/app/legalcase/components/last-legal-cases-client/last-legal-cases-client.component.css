@@ -17,31 +17,30 @@
 }
 
 .no-cases h3 {
-  font-size: 1.5rem;
-  margin-bottom: 10px;
   color: #333;
+  margin-bottom: 10px;
 }
 
 .cases-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
   gap: 20px;
+  grid-template-columns: 1fr;
 }
 
 .case-card {
   background: #ffffff;
-  border: 1px solid #e5e7eb;
+  border: 2px solid #f3f4f6;
+  border-left: 6px solid #dc2626;
   border-radius: 12px;
   padding: 20px;
   cursor: pointer;
   transition: all 0.3s ease;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-  border-left: 4px solid #dc2626;
 }
 
 .case-card:hover {
   transform: translateY(-2px);
-  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
   border-left-color: #b91c1c;
 }
 
@@ -50,26 +49,24 @@
   justify-content: space-between;
   align-items: flex-start;
   margin-bottom: 15px;
-  gap: 15px;
 }
 
 .case-title {
+  color: #333;
   font-size: 1.1rem;
   font-weight: 600;
   margin: 0;
-  color: #1f2937;
-  line-height: 1.4;
   flex: 1;
+  margin-right: 15px;
 }
 
 .case-status {
-  padding: 6px 12px;
+  padding: 4px 12px;
   border-radius: 20px;
   font-size: 0.75rem;
   font-weight: 600;
   text-transform: uppercase;
   letter-spacing: 0.5px;
-  white-space: nowrap;
 }
 
 .status-open {
@@ -132,14 +129,9 @@
 }
 
 @media (max-width: 768px) {
-  .cases-grid {
-    grid-template-columns: 1fr;
-  }
-
   .case-card-header {
     flex-direction: column;
     align-items: flex-start;
-    gap: 10px;
   }
 
   .case-title {

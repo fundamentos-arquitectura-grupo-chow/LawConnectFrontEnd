@@ -1,10 +1,34 @@
 <div class="main">
   <div class="user-container">
-    <app-current-user> </app-current-user>
+    <div class="welcome-section">
+      <h2>Bienvenido</h2>
+      <p>Panel de Control del Cliente</p>
+    </div>
+
+    <app-current-user></app-current-user>
+
+    <div class="stats-grid">
+      <div class="stat-card">
+        <span class="stat-number">{{ activeCasesCount }}</span>
+        <span class="stat-label">Casos Activos</span>
+      </div>
+      <div class="stat-card pending">
+        <span class="stat-number">{{ pendingConsultationsCount }}</span>
+        <span class="stat-label">Consultas Pendientes</span>
+      </div>
+      <div class="stat-card completed">
+        <span class="stat-number">{{ closedCasesCount }}</span>
+        <span class="stat-label">Casos Completados</span>
+      </div>
+    </div>
   </div>
-  <div class="spacer"></div>
+
   <div class="lawyers-container">
-    <app-lawyer-list></app-lawyer-list>
+    <div class="dashboard-header">
+      <h1 class="dashboard-title">Mis Casos Legales</h1>
+      <p class="dashboard-subtitle">Revisa el estado de tus casos y consultas</p>
+    </div>
+
+    <app-last-legal-cases-client [clientId]="currentId"></app-last-legal-cases-client>
   </div>
 </div>
-

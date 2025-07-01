@@ -1,12 +1,27 @@
 <mat-card class="user-profile">
-  <img [src]="url_image" alt="Usuario" class="avatar">
+  <div class="profile-header">
+    <div class="avatar-container">
+      <img [src]="url_image" alt="Usuario" class="avatar">
+      <div class="role-badge">{{ getRoleDisplayName() }}</div>
+    </div>
+  </div>
 
-  <div class="user-name">{{ name }}</div>
+  <div class="user-info">
+    <h3 class="user-name">{{ name }}</h3>
+    <p class="user-email">{{ email }}</p>
 
-  <hr class="divider">
+    <div class="user-details" *ngIf="userRole === 'LAWYER'">
+      <div class="detail-item">
+        <mat-icon class="detail-icon">work</mat-icon>
+        <span>{{ specialization }}</span>
+      </div>
+    </div>
 
-  <div class="casos-container">
-    <span class="mis-casos">Mis Casos:</span>
-    <span class="numero">2</span>
+    <div class="contact-info">
+      <div class="contact-item" *ngIf="phone">
+        <mat-icon class="contact-icon">phone</mat-icon>
+        <span>{{ phone }}</span>
+      </div>
+    </div>
   </div>
 </mat-card>

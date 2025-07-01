@@ -2,20 +2,20 @@
   <div *ngIf="legalCases.length === 0" class="no-cases">
     <mat-icon class="no-cases-icon">folder_open</mat-icon>
     <h3>No tienes casos legales aún</h3>
-    <p>Cuando apruebes consultas, tus casos aparecerán aquí</p>
+    <p>Cuando tengas consultas aprobadas, tus casos aparecerán aquí</p>
   </div>
 
   <div *ngIf="legalCases.length > 0" class="cases-grid">
     <div *ngFor="let legalCase of legalCases" class="case-card" (click)="viewLegalCase(legalCase.consultationId.id)">
       <div class="case-card-header">
-        <h4 class="case-title">{{ legalCase.title }}</h4>
+        <h3 class="case-title">{{ legalCase.title }}</h3>
         <span class="case-status" [ngClass]="getStatusClass(legalCase.status)">
           {{ getStatusText(legalCase.status) }}
         </span>
       </div>
 
       <div class="case-description">
-        <p>{{ legalCase.description | slice:0:120 }}{{ legalCase.description.length > 120 ? '...' : '' }}</p>
+        <p>{{ legalCase.description | slice:0:100 }}{{ legalCase.description.length > 100 ? '...' : '' }}</p>
       </div>
     </div>
   </div>

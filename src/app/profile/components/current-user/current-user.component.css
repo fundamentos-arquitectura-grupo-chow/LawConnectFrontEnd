@@ -1,49 +1,97 @@
 .user-profile {
   display: flex;
   flex-direction: column;
-  align-items: center;
-  padding: 20px;
-  min-width: 300px;
+  padding: 0;
+  min-width: 320px;
   background: #ffffff;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2), 0 6px 20px rgba(0, 0, 0, 0.15);
-  border-radius: 8px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.12);
+  border-radius: 16px;
+  margin-bottom: 20px;
+  overflow: hidden;
+  border: 1px solid rgba(220, 38, 38, 0.1);
+}
+
+.profile-header {
+  background: linear-gradient(135deg, #dc2626 0%, #b91c1c 100%);
+  padding: 24px;
+  text-align: center;
+  position: relative;
+}
+
+.avatar-container {
+  position: relative;
+  display: inline-block;
 }
 
 .avatar {
-  width: 100px;
-  height: 100px;
+  width: 80px;
+  height: 80px;
   border-radius: 50%;
   object-fit: cover;
-  margin: 0 auto;
-  display: block;
+  border: 4px solid rgba(255, 255, 255, 0.2);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+}
+
+.role-badge {
+  position: absolute;
+  bottom: -8px;
+  right: -8px;
+  background: #ffffff;
+  color: #dc2626;
+  font-size: 0.75rem;
+  font-weight: 600;
+  padding: 4px 8px;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+  border: 2px solid #dc2626;
+}
+
+.user-info {
+  padding: 20px 24px;
+  flex: 1;
 }
 
 .user-name {
-  font-size: 18px;
-  font-weight: 500;
-  margin: 15px 0;
+  font-size: 1.25rem;
+  font-weight: 600;
+  margin: 0 0 8px 0;
+  color: #1f2937;
   text-align: center;
 }
 
-.divider {
-  width: 80%;
-  border: 0;
-  height: 1px;
-  background-color: #ddd;
-  margin: 15px auto;
+.user-email {
+  font-size: 0.875rem;
+  color: #6b7280;
+  margin: 0 0 16px 0;
+  text-align: center;
 }
 
-.casos-container {
+.user-details, .contact-info {
   display: flex;
-  justify-content: center;
+  flex-direction: column;
+  gap: 8px;
+  margin-bottom: 16px;
+}
+
+.detail-item, .contact-item {
+  display: flex;
   align-items: center;
   gap: 8px;
+  padding: 8px 12px;
+  background: #f9fafb;
+  border-radius: 8px;
+  font-size: 0.875rem;
+  color: #374151;
 }
 
-.mis-casos {
-  font-weight: 500;
+.detail-icon, .contact-icon {
+  font-size: 18px;
+  color: #dc2626;
 }
 
-.numero {
-  font-weight: bold;
+@media (max-width: 768px) {
+  .user-profile {
+    min-width: unset;
+    width: 100%;
+  }
 }

@@ -76,6 +76,7 @@ import { CreateVideoCallDialogComponent } from './communication/components/creat
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
 import { CompletePaymentComponent } from './feeing/components/complete-payment/complete-payment.component';
+import { LastLegalCasesClientComponent } from './legalcase/components/last-legal-cases-client/last-legal-cases-client.component';
 
 @NgModule({
   declarations: [
@@ -125,7 +126,8 @@ import { CompletePaymentComponent } from './feeing/components/complete-payment/c
     AddTypeLawyerComponent,
     CreateAppointmentDialogComponent,
     CreateVideoCallDialogComponent,
-    CompletePaymentComponent
+    CompletePaymentComponent,
+    LastLegalCasesClientComponent
   ],
   imports: [
     BrowserModule,

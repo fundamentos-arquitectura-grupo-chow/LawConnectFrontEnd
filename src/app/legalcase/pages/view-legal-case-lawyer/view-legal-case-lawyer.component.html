@@ -1,33 +1,58 @@
 <div class="view-case">
   <div class="case-block">
     <div class="case-header">
-      <p>CASO LEGAL</p>
-      <p *ngIf="isCaseClosed" class="closed-status">CASO CERRADO</p>
+      <h1>CASO LEGAL</h1>
+      <div *ngIf="isCaseClosed" class="status-badge status-closed">
+        CASO CERRADO
+      </div>
+      <div *ngIf="!isCaseClosed" class="status-badge status-open">
+        CASO ACTIVO
+      </div>
     </div>
 
     <div class="case-content">
-      <div class="case-description">
-        <p>
-          <strong>Titulo:</strong> {{ legalCase?.title }} <br>
-          <strong>Descripción:</strong> {{ legalCase?.description }}
-        </p>
+      <div class="case-main-info">
+        <div class="case-title">
+          <h2>{{ legalCase?.title }}</h2>
+        </div>
+        <div class="case-description">
+          <h3>Descripción del Caso</h3>
+          <p>{{ legalCase?.description }}</p>
+        </div>
       </div>
+
       <div class="actions">
-        <button class="go-to" [disabled]="isCaseClosed" (click)="goToDocuments()">Ir A Documentos</button>
-        <span class="spacer"></span>
-        <button class="go-to" [disabled]="isCaseClosed" (click)="goToPayments()">Generar Pago</button>
+        <button class="go-to" [disabled]="isCaseClosed" (click)="goToDocuments()">
+          Gestionar Documentos
+        </button>
+        <button class="go-to" [disabled]="isCaseClosed" (click)="goToPayments()">
+          Generar Pago
+        </button>
       </div>
     </div>
+
     <div class="communication">
-      <button class="see-communication" [disabled]="isCaseClosed" (click)="goToChatRoom()">Ver Chat</button>
-      <br>
-      <button class="see-communication" [disabled]="isCaseClosed" (click)="goToVideoCall()">Ir a Videollamada</button>
-      <br>
-      <button class="see-communication" [disabled]="isCaseClosed" (click)="goToAppointments()">Ver citas reservadas</button>
+      <h3 class="communication-title">Herramientas de Comunicación</h3>
+      <div class="communication-grid">
+        <button class="see-communication" [disabled]="isCaseClosed" (click)="goToChatRoom()">
+          Chat
+        </button>
+        <button class="see-communication" [disabled]="isCaseClosed" (click)="goToVideoCall()">
+          Videollamada
+        </button>
+        <button class="see-communication" [disabled]="isCaseClosed" (click)="goToAppointments()">
+          Citas
+        </button>
+      </div>
     </div>
 
     <div class="close-case" *ngIf="!isCaseClosed">
-      <button class="close" (click)="openCloseCasePopup('close')">Cerrar Caso</button>
+      <p class="warning-text">
+        ⚠️ Una vez cerrado el caso, no podrás realizar más modificaciones
+      </p>
+      <button class="close" (click)="openCloseCasePopup('close')">
+        Cerrar Caso Definitivamente
+      </button>
     </div>
   </div>
 </div>
