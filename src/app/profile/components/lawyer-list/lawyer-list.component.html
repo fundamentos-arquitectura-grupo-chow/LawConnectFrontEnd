@@ -1,31 +1,40 @@
-<div class="recommendation-container">
-  <h3>RECOMENDACIONES</h3>
+<div class="recommendation-container" [class.compact]="compactMode">
+  <h3 *ngIf="!compactMode">RECOMENDACIONES</h3>
+  <h3 *ngIf="compactMode">ABOGADOS DESTACADOS</h3>
 
-  <div class="recommendation-card">
+  <div class="recommendation-card" [class.compact]="compactMode">
     <!-- Botón Izquierda -->
-    <button class="navigation-btn" (click)="prevLawyer()" [disabled]="currentIndex === 0">
+    <button class="navigation-btn" [class.compact]="compactMode" (click)="prevLawyer()" [disabled]="currentIndex === 0">
       &lt;
     </button>
 
     <!-- Información del Abogado -->
-    <div class="lawyer-info" *ngIf="currentLawyer">
-      <img src="assets/images/abogado696.jpg" [alt]="currentLawyer.profile.name.firstName" class="lawyer-image">
-      <div class="info-container">
+    <div class="lawyer-info" [class.compact]="compactMode" *ngIf="currentLawyer">
+      <img src="assets/images/abogado696.jpg" [alt]="currentLawyer.profile.name.firstName" class="lawyer-image" [class.compact]="compactMode">
+      <div class="info-container" [class.compact]="compactMode">
         <h4>{{ currentLawyer.profile.name.firstName }} {{ currentLawyer.profile.name.lastName }}</h4>
-        <p>{{ currentLawyer.lawyerTypes.join(', ') }}</p>
+        <p>{{ currentLawyer.lawyerTypes[0] }}</p>
         <div class="stars">
-          <span *ngFor="let star of [1, 2, 3, 4, 5]; let i = index" [class.filled]="i < 5">★</span>
+          <span *ngFor="let star of [1, 2, 3, 4, 5]; let i = index" [class.filled]="i < 4">★</span>
         </div>
-        <button (click)="viewProfile(currentLawyer.id)">Ver Perfil</button>
+        <div class="button-container" [class.compact]="compactMode">
+          <button class="primary-btn" (click)="viewProfile(currentLawyer.id)">Ver Perfil</button>
+          <button *ngIf="compactMode" class="secondary-btn" (click)="viewAllLawyers()">Ver Todos</button>
+        </div>
       </div>
     </div>
 
     <!-- Botón Derecha -->
-    <button class="navigation-btn" (click)="nextLawyer()" [disabled]="currentIndex === randomLawyers.length - 1">
+    <button class="navigation-btn" [class.compact]="compactMode" (click)="nextLawyer()" [disabled]="currentIndex === randomLawyers.length - 1">
       &gt;
     </button>
   </div>
+
+  <!-- Contador de abogados para modo compacto -->
+  <div *ngIf="compactMode" class="lawyer-counter">
+    {{ currentIndex + 1 }} / {{ randomLawyers.length }}
+  </div>
 </div>
 
-<!-- Sección Últimos Casos -->
-<app-last-legal-cases *ngIf="currentLawyer" [lawyerId]="currentLawyer.id"></app-last-legal-cases>
+<!-- Sección Últimos Casos (solo en modo normal) -->
+<app-last-legal-cases *ngIf="currentLawyer && !compactMode" [lawyerId]="currentLawyer.id"></app-last-legal-cases>

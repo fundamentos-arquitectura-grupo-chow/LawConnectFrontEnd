@@ -11,30 +11,29 @@ import { SignInRequest } from '../../model/sign-in.request';
 export class SignInComponent {
   username: string = '';
   password: string = '';
-  userRole: string = '';
+  errorMessage: string = '';
+  isLoading: boolean = false;
 
   constructor(private router: Router, private authService: AuthenticationService) {
     this.authService.signOut();
   }
 
   signIn() {
-    const signInRequest = new SignInRequest(this.username, this.password);
-    this.authService.signIn(signInRequest);
-  }
+    this.errorMessage = '';
+    this.isLoading = true;
 
-  navigateSignIn() {
-    this.authService.currentUserRole.subscribe((role) => {
-      const match = role.match(/name=(\w+)/);
-      if (match) {
-        this.userRole = match[1];
+    const signInRequest = new SignInRequest(this.username, this.password);
+
+    // Simplemente llama al servicio sin suscribirse
+    this.authService.signIn(signInRequest);
+
+    // Escucha los cambios del estado de autenticación
+    this.authService.isSignedIn.subscribe(isSignedIn => {
+      this.isLoading = false;
+      if (!isSignedIn && this.username && this.password) {
+        this.errorMessage = 'Esta cuenta no existe o la contraseña es incorrecta';
       }
     });
-    console.log('User role:', this.userRole);
-    if (this.userRole === 'CLIENT') {
-      this.navigateTo('home-client');
-    } else if (this.userRole === 'LAWYER') {
-      this.navigateTo('home-lawyer');
-    }
   }
 
   navigateTo(route: string) {
