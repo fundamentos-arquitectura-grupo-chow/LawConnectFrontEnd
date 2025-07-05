@@ -20,8 +20,10 @@ export class LegalCaseService {
     return this.http.get<LegalCase[]>(this.apiUrl);
   }
 
-  closeLegalCase(legalCaseId: number): Observable<void> {
-    return this.http.patch<void>(`${this.apiUrl}/close/${legalCaseId}`, {});
+  closeLegalCase(legalCaseId: number): Observable<string> {
+    return this.http.patch(`${this.apiUrl}/close/${legalCaseId}`, {}, {
+      responseType: 'text'
+    });
   }
 
   getLegalCaseByConsultationId(consultationId: number): Observable<LegalCase> {

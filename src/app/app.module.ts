@@ -58,7 +58,7 @@ import { ListLegalCasesComponent } from './legalcase/components/list-legal-cases
 import { CasesComponent } from './legalcase/pages/cases/cases.component';
 import { LastLegalCasesComponent } from './legalcase/components/last-legal-cases/last-legal-cases.component';
 import { LawyerSearchComponent } from './profile/components/lawyer-search/lawyer-search.component';
-import {MatSelect} from "@angular/material/select";
+import {MatSelect, MatSelectTrigger} from "@angular/material/select";
 import { LawyerProfileComponent } from './profile/pages/lawyer-profile/lawyer-profile.component';
 import {ChatroomComponent} from "./communication/components/chatroom/chatroom.component";
 import {
@@ -73,7 +73,10 @@ import { AddTypeLawyerComponent } from './profile/components/add-type-lawyer/add
 import { CreateAppointmentDialogComponent } from './communication/components/create-appointment-dialog/create-appointment-dialog.component';
 import {MatList, MatListItem} from "@angular/material/list";
 import { CreateVideoCallDialogComponent } from './communication/components/create-video-call-dialog/create-video-call-dialog.component';
-
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
+import { CompletePaymentComponent } from './feeing/components/complete-payment/complete-payment.component';
+import { LastLegalCasesClientComponent } from './legalcase/components/last-legal-cases-client/last-legal-cases-client.component';
 
 @NgModule({
   declarations: [
@@ -122,7 +125,9 @@ import { CreateVideoCallDialogComponent } from './communication/components/creat
     CompleteSignUpLawyerComponent,
     AddTypeLawyerComponent,
     CreateAppointmentDialogComponent,
-    CreateVideoCallDialogComponent
+    CreateVideoCallDialogComponent,
+    CompletePaymentComponent,
+    LastLegalCasesClientComponent
   ],
   imports: [
     BrowserModule,
@@ -147,6 +152,10 @@ import { CreateVideoCallDialogComponent } from './communication/components/creat
     MatOption,
     MatListItem,
     MatList,
+    ReactiveFormsModule,
+    MatDatepickerModule,
+    MatProgressSpinnerModule,
+    MatSelectTrigger
   ],
   providers: [
     provideAnimationsAsync(),

@@ -1,17 +1,27 @@
-<form (ngSubmit)="onSubmit()">
-  <div>
-    <label for="title">Title:</label>
-    <input type="text" id="title" [(ngModel)]="consultation.title" name="title" required>
-  </div>
-  <div>
-    <label for="description">Description:</label>
-    <textarea id="description" [(ngModel)]="consultation.description" name="description" required></textarea>
-  </div>
-  <div>
-    <label for="type">Type:</label>
-    <select id="type" [(ngModel)]="consultation.type" name="type" required>
-      <option *ngFor="let type of consultationTypes" [value]="type.value">{{ type.label }}</option>
-    </select>
-  </div>
-  <button type="submit">Submit</button>
-</form>
+<div class="form-container">
+  <h2 class="form-title">Nueva Consulta Legal</h2>
+  <form (ngSubmit)="onSubmit()">
+    <div>
+      <label for="title">Título:</label>
+      <input type="text" id="title" [(ngModel)]="consultation.title" name="title" required>
+    </div>
+    <div>
+      <label for="description">Descripción:</label>
+      <textarea id="description" [(ngModel)]="consultation.description" name="description" required></textarea>
+    </div>
+    <div>
+      <label for="type">Tipo de consulta:</label>
+      <select id="type" [(ngModel)]="consultation.type" name="type" required>
+        <option *ngFor="let type of consultationTypes" [value]="type.value">{{ type.label }}</option>
+      </select>
+    </div>
+    <div>
+      <label for="currency">Moneda:</label>
+      <select id="currency" [(ngModel)]="consultation.Currency" name="Currency" required>
+        <option [value]="0">Soles</option>
+        <option [value]="1">Dólares</option>
+      </select>
+    </div>
+    <button type="submit">Enviar Consulta</button>
+  </form>
+</div>

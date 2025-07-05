@@ -9,23 +9,23 @@ import {CompletePaymentResource} from "../model/complete-payment-resource";
   providedIn: 'root'
 })
 export class PaymentService {
-  private apiUrl = `http://localhost:8080/v1/api/payments`;
+  private baseUrl = `http://localhost:8080/v1/api/payments`;
 
   constructor(private http: HttpClient) {}
 
   completePayment(paymentId: number, resource: CompletePaymentResource): Observable<Payment> {
-    return this.http.patch<Payment>(`${this.apiUrl}/consultation/${paymentId}`, resource);
+    return this.http.patch<Payment>(`${this.baseUrl}/consultation/${paymentId}`, resource);
   }
 
   getAllPaymentsByConsultationId(consultationId: number): Observable<Payment[]> {
-    return this.http.get<Payment[]>(`${this.apiUrl}/consultation/${consultationId}`);
+    return this.http.get<Payment[]>(`${this.baseUrl}/consultation/${consultationId}`);
   }
 
   getPaymentById(paymentId: number): Observable<Payment> {
-    return this.http.get<Payment>(`${this.apiUrl}/${paymentId}`);
+    return this.http.get<Payment>(`${this.baseUrl}/${paymentId}`);
   }
 
   getAllPaymentsByClientId(clientId: number): Observable<Payment[]> {
-    return this.http.get<Payment[]>(`${this.apiUrl}/payment/${clientId}`);
+    return this.http.get<Payment[]>(`${this.baseUrl}/payment/${clientId}`);
   }
 }

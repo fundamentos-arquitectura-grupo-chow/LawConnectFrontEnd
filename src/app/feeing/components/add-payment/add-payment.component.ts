@@ -20,10 +20,9 @@ export class AddPaymentComponent {
 
   accept() {
     const resource = new AddPaymentResource(this.data.consultationId, this.amount, 1);
-    this.consultationService.addPaymentToConsultation(resource).subscribe(() => {
+    this.consultationService.addPaymentToConsultation(this.data.consultationId, resource).subscribe(() => {
       this.dialogRef.close('confirm');
     });
-    this.dialogRef.close('confirm');
   }
 
   cancel() {

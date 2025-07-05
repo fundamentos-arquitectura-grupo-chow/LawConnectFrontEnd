@@ -1,10 +1,26 @@
 <div class="appointments-container">
-  <h2>Appointments</h2>
-  <mat-list>
-    <mat-list-item *ngFor="let appointment of appointments">
-      <h3 matLine>{{ appointment.description }}</h3>
-      <p matLine>{{ appointment.location }} - {{ appointment.status }}</p>
-    </mat-list-item>
-  </mat-list>
-  <button mat-raised-button color="primary" *ngIf="currentUserRole === '[Role(id=1, name=LAWYER)]'" (click)="createAppointment()">Create Appointment</button>
+  <div class="appointments-header">
+    <h2>Calendario de Citas</h2>
+    <button mat-fab color="primary" *ngIf="currentUserRole === '[Role(id=1, name=LAWYER)]'" (click)="createAppointment()">
+      <mat-icon>add</mat-icon>
+    </button>
+  </div>
+
+  <div class="appointments-empty" *ngIf="appointments.length === 0">
+    <mat-icon>event_busy</mat-icon>
+    <p>No hay citas programadas</p>
+  </div>
+
+  <div class="appointments-grid">
+    <div class="appointment-card" *ngFor="let appointment of appointments">
+      <div class="appointment-status" [ngClass]="appointment.status.toLowerCase()"></div>
+      <div class="appointment-content">
+        <h3>{{ appointment.description }}</h3>
+        <div class="appointment-details">
+          <span><mat-icon>location_on</mat-icon> {{ appointment.location }}</span>
+          <span class="status-badge" [ngClass]="appointment.status.toLowerCase()">{{ appointment.status }}</span>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>

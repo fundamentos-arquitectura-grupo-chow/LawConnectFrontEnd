@@ -58,6 +58,12 @@ export class VideoCallComponent implements OnInit {
     });
   }
 
+  getVideoCallLink(videoCall: VideoCallResource): string {
+    // Genera un enlace consistente basado en el ID de la videollamada
+    const meetCode = `law-${this.consultationId}-${videoCall.id}`;
+    return `https://meet.google.com/${meetCode}`;
+  }
+
   createVideoCall(): void {
     const dialogRef = this.dialog.open(CreateVideoCallDialogComponent, {
       width: '400px',

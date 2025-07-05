@@ -1,0 +1,50 @@
+<!-- src/app/feeing/components/complete-payment/complete-payment.component.html -->
+<div class="payment-form-container">
+  <div class="card-icon"></div>
+
+  <h2>Completar Pago</h2>
+  <p class="subtitle">Monto a pagar: S/. {{ data.amount }}</p>
+
+  <form [formGroup]="paymentForm" (ngSubmit)="onSubmit()">
+    <div class="input-container">
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Número de Tarjeta</mat-label>
+        <input matInput formControlName="cardNumber" placeholder="1234567890123456" maxlength="16">
+        <mat-error *ngIf="paymentForm.controls['cardNumber'].hasError('required')">
+          Número de tarjeta requerido
+        </mat-error>
+        <mat-error *ngIf="paymentForm.controls['cardNumber'].hasError('pattern')">
+          Debe contener 16 dígitos
+        </mat-error>
+      </mat-form-field>
+    </div>
+
+    <div class="card-details">
+      <mat-form-field appearance="outline" class="expiration">
+        <mat-label>Fecha Expiración</mat-label>
+        <input matInput formControlName="expirationDate" placeholder="MM/YY" maxlength="5">
+        <mat-error *ngIf="paymentForm.controls['expirationDate'].hasError('required') ||
+                          paymentForm.controls['expirationDate'].hasError('pattern')">
+          Formato: MM/YY
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" class="cvv">
+        <mat-label>CVV</mat-label>
+        <input matInput formControlName="cvv" type="password" maxlength="4">
+        <mat-error *ngIf="paymentForm.controls['cvv'].hasError('required') ||
+                          paymentForm.controls['cvv'].hasError('pattern')">
+          3-4 dígitos
+        </mat-error>
+      </mat-form-field>
+    </div>
+
+    <div class="actions-container">
+      <button type="button" class="btn-cancel" [disabled]="isSubmitting" (click)="cancel()">Cancelar</button>
+      <button type="submit" class="btn-accept" [disabled]="paymentForm.invalid || isSubmitting">
+        <mat-spinner *ngIf="isSubmitting" diameter="20" class="spinner"></mat-spinner>
+        <span *ngIf="!isSubmitting">Pagar</span>
+      </button>
+    </div>
+  </form>
+</div>

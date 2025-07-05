@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { Router } from '@angular/router';
 import { Lawyer } from '../../model/lawyer';
 import { LawyerService } from '../../services/lawyer.service';
@@ -9,6 +9,9 @@ import { LawyerService } from '../../services/lawyer.service';
   styleUrls: ['./lawyer-list.component.css']
 })
 export class LawyerListComponent implements OnInit {
+  @Input() compactMode: boolean = false;
+  @Input() maxLawyers: number = 3;
+
   lawyers: Lawyer[] = [];
   randomLawyers: Lawyer[] = [];
   currentIndex: number = 0;
@@ -18,7 +21,7 @@ export class LawyerListComponent implements OnInit {
   ngOnInit(): void {
     this.lawyerService.getAllLawyers().subscribe((lawyers: Lawyer[]) => {
       this.lawyers = lawyers;
-      this.randomLawyers = this.getRandomLawyers(3);
+      this.randomLawyers = this.getRandomLawyers(this.maxLawyers);
     });
   }
 
@@ -41,6 +44,10 @@ export class LawyerListComponent implements OnInit {
 
   viewProfile(lawyerId: number): void {
     this.router.navigate([`/lawyer-profile/${lawyerId}`]);
+  }
+
+  viewAllLawyers(): void {
+    this.router.navigate(['/lawyer-search']);
   }
 
   get currentLawyer(): Lawyer {

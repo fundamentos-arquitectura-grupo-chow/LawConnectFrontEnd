@@ -1,19 +1,19 @@
-<mat-dialog-content class="add-payment">
-  <h5>Generar Pago</h5>
-  <p>Aquí generarás un pago para el cliente por la consulta</p>
+<div class="payment-form-container">
+  <div class="payment-icon"></div>
 
-  <div class="form-group">
-    <mat-form-field>
-      <input matInput placeholder="Precio">
+  <h2>Generar Pago</h2>
+  <p class="subtitle">Ingresa el monto que el cliente deberá pagar por la consulta legal</p>
+
+  <div class="input-container">
+    <mat-form-field appearance="outline" class="amount-field">
+      <mat-label>Monto a pagar</mat-label>
+      <span matPrefix>S/. &nbsp;</span>
+      <input matInput [(ngModel)]="amount" type="number" min="0" step="0.01">
     </mat-form-field>
   </div>
 
-  <mat-dialog-actions>
-    <div class="actions">
-      <button mat-button class="cancel" (click)="cancel()">Cancelar</button>
-      <button mat-button class="accept" (click)="accept()">Aceptar</button>
-    </div>
-  </mat-dialog-actions>
-</mat-dialog-content>
-
-
+  <div class="actions-container">
+    <button class="btn-cancel" (click)="cancel()">Cancelar</button>
+    <button class="btn-accept" [disabled]="amount <= 0" (click)="accept()">Confirmar</button>
+  </div>
+</div>

@@ -1,8 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { MatDialog } from '@angular/material/dialog';
 import { AddDocumentComponent } from '../../components/add-document/add-document.component';
 import { AuthenticationService } from '../../../iam/services/authentication.service';
+import { DocumentTableComponent } from "../../components/document-table/document-table.component";
 
 @Component({
   selector: 'app-document-management',
@@ -13,6 +14,13 @@ export class DocumentManagementComponent implements OnInit {
   legalCaseId!: number;
   currentUserRole: string = '';
 
+  // Propiedad calculada para simplificar la lógica
+  get isLawyer(): boolean {
+    return this.currentUserRole.includes('LAWYER');
+  }
+
+  @ViewChild(DocumentTableComponent) documentTableComponent!: DocumentTableComponent;
+
   constructor(
     private route: ActivatedRoute,
     private dialog: MatDialog,
@@ -21,7 +29,6 @@ export class DocumentManagementComponent implements OnInit {
 
   ngOnInit() {
     this.route.params.subscribe(params => {
-      console.log(params);
       this.legalCaseId = +params['legalCaseId'];
       console.log('Legal Case ID:', this.legalCaseId);
     });
@@ -33,13 +40,14 @@ export class DocumentManagementComponent implements OnInit {
 
   openAddDocumentDialog() {
     const dialogRef = this.dialog.open(AddDocumentComponent, {
-      width: '400px',
-      data: { legalCaseId: this.legalCaseId }
+      width: '500px',
+      disableClose: true,
+      data: {legalCaseId: this.legalCaseId}
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      if (result === 'confirm') {
-        // Handle the confirmation if needed
+      if (result === 'confirm' && this.documentTableComponent) {
+        this.documentTableComponent.loadDocuments();
       }
     });
   }

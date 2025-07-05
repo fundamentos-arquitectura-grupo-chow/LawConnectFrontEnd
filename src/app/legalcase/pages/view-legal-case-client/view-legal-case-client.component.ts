@@ -5,6 +5,7 @@ import { LegalCase } from '../../model/legal-case';
 import { MatDialog } from '@angular/material/dialog';
 import { ConfirmCloseCaseComponent } from '../../components/confirm-close-case/confirm-close-case.component';
 import {Consultation} from "../../../consultation/model/consultation";
+import {ConsultationService} from "../../../consultation/services/consultation.service";
 
 @Component({
   selector: 'app-view-legal-case-client',
@@ -15,10 +16,12 @@ export class ViewLegalCaseClientComponent implements OnInit {
   legalCase: LegalCase | null = null;
   showPopup = false;
   consultation: Consultation | null = null;
+  isCaseClosed = false;
 
   constructor(
     private route: ActivatedRoute,
     private legalCaseService: LegalCaseService,
+    private consultationService: ConsultationService,
     private router: Router,
     private dialog: MatDialog
   ) {}
@@ -31,10 +34,25 @@ export class ViewLegalCaseClientComponent implements OnInit {
   }
 
 
+
   loadLegalCase(consultationId: number) {
     this.legalCaseService.getLegalCaseByConsultationId(consultationId).subscribe((data) => {
       this.legalCase = data;
-      this.consultation = data.consultationId; // Assuming the legal case has a consultation property
+
+      // Check if case is closed
+      this.isCaseClosed = this.legalCase.status === 'CLOSED';
+
+      // If case is closed, show a message
+      if (this.isCaseClosed) {
+        alert('Este caso ha sido cerrado y está en modo de solo lectura.');
+      }
+
+      // Obtener el objeto Consultation completo
+      this.consultationService.getConsultationById(consultationId).subscribe(
+        (consultation) => {
+          this.consultation = consultation;
+        }
+      );
     });
   }
 

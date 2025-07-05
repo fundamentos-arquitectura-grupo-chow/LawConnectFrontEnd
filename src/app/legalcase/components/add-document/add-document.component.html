@@ -1,32 +1,66 @@
-<mat-dialog-content class="add-document">
-  <h5>Agregar Documento</h5>
-
-  <div class="form-group">
-    <mat-form-field>
-      <input matInput placeholder="Título" [(ngModel)]="title">
-    </mat-form-field>
+<div class="add-document-container">
+  <div class="dialog-header">
+    <h2>Nuevo documento</h2>
+    <p class="subtitle">Completa la información del documento</p>
   </div>
 
-  <div class="form-group">
-    <mat-form-field>
-      <input matInput placeholder="Descripción" [(ngModel)]="description">
-    </mat-form-field>
-  </div>
-
-  <div class="form-group">
-    <mat-form-field>
-      <mat-select placeholder="Tipo" [(ngModel)]="type">
-        <mat-option *ngFor="let type of documentTypes" [value]="type.value">
-          {{ type.label }}
-        </mat-option>
-      </mat-select>
-    </mat-form-field>
-  </div>
-
-  <mat-dialog-actions>
-    <div class="actions">
-      <button mat-button class="cancel" (click)="cancel()">Cancelar</button>
-      <button mat-button class="accept" (click)="accept()">Aceptar</button>
+  <form [formGroup]="documentForm" (ngSubmit)="accept()" class="document-form">
+    <div class="form-field">
+      <label for="title">
+        <i class="material-icons">description</i>
+        <span>Título</span>
+      </label>
+      <input
+        id="title"
+        type="text"
+        formControlName="title"
+        placeholder="Ingresa el título del documento">
+      <div class="error-message" *ngIf="documentForm.get('title')?.touched && documentForm.get('title')?.errors?.['required']">
+        El título es obligatorio
+      </div>
     </div>
-  </mat-dialog-actions>
-</mat-dialog-content>
+
+    <div class="form-field">
+      <label for="description">
+        <i class="material-icons">notes</i>
+        <span>Descripción</span>
+      </label>
+      <textarea
+        id="description"
+        formControlName="description"
+        placeholder="Ingresa una descripción breve"></textarea>
+      <div class="error-message" *ngIf="documentForm.get('description')?.touched && documentForm.get('description')?.errors?.['required']">
+        La descripción es obligatoria
+      </div>
+    </div>
+
+    <div class="form-field">
+      <label for="type">
+        <i class="material-icons">category</i>
+        <span>Tipo de documento</span>
+      </label>
+      <select id="type" formControlName="type">
+        <option *ngFor="let type of documentTypes" [value]="type.value">
+          {{ type.label }}
+        </option>
+      </select>
+    </div>
+
+    <div class="error-submit" *ngIf="submitError">
+      {{ submitError }}
+    </div>
+
+    <div class="form-actions">
+      <button type="button" class="btn-cancel" (click)="cancel()">
+        Cancelar
+      </button>
+      <button
+        type="submit"
+        class="btn-submit"
+        [disabled]="isSubmitting"
+        [class.loading]="isSubmitting">
+        {{ isSubmitting ? 'Guardando...' : 'Guardar documento' }}
+      </button>
+    </div>
+  </form>
+</div>

@@ -10,7 +10,7 @@ import { AddPaymentResource } from '../../feeing/model/add-payment';
   providedIn: 'root'
 })
 export class ConsultationService {
-  private apiUrl = `${environment.serverBasePath}/consultation`;
+  private apiUrl = `${environment.serverBasePath}/consultations`;
 
   constructor(private http: HttpClient) { }
 
@@ -19,31 +19,31 @@ export class ConsultationService {
   }
 
   getAllConsultationsByLawyerId(lawyerId: number): Observable<Consultation[]> {
-    return this.http.get<Consultation[]>(`${this.apiUrl}/lawyerId/${lawyerId}`);
+    return this.http.get<Consultation[]>(`${this.apiUrl}/lawyer/${lawyerId}`);
   }
 
   getAllConsultationsByClientId(clientId: number): Observable<Consultation[]> {
-    return this.http.get<Consultation[]>(`${this.apiUrl}/clientId/${clientId}`);
+    return this.http.get<Consultation[]>(`${this.apiUrl}/client/${clientId}`);
   }
 
   getAllConsultationsByLawyerIdAndClientId(lawyerId: number, clientId: number): Observable<Consultation[]> {
-    return this.http.get<Consultation[]>(`${this.apiUrl}/lawyerId/${lawyerId}/clientId/${clientId}`);
+    return this.http.get<Consultation[]>(`${this.apiUrl}/client/${clientId}/lawyer/${lawyerId}`);
   }
 
   deleteConsultation(consultationId: number): Observable<void> {
     return this.http.delete<void>(`${this.apiUrl}/${consultationId}`);
   }
 
-  addPaymentToConsultation(resource: AddPaymentResource): Observable<void> {
-    return this.http.post<void>(`${this.apiUrl}/payments`, resource);
+  addPaymentToConsultation(consultationId: number, resource: AddPaymentResource): Observable<void> {
+    return this.http.post<void>(`${this.apiUrl}/${consultationId}/payments`, resource);
   }
 
   approveConsultation(consultationId: number): Observable<void> {
-    return this.http.patch<void>(`${this.apiUrl}/approve/${consultationId}`, {});
+    return this.http.post<void>(`${this.apiUrl}/${consultationId}/approve`, {});
   }
 
   declineConsultation(consultationId: number): Observable<void> {
-    return this.http.patch<void>(`${this.apiUrl}/reject/${consultationId}`, {});
+    return this.http.post<void>(`${this.apiUrl}/${consultationId}/decline`, {});
   }
 
   getConsultationById(consultationId: number): Observable<Consultation> {

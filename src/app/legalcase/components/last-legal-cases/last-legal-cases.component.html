@@ -1,14 +1,22 @@
-<!-- Sección Últimos Casos -->
-<div class="recent-cases-section">
-  <h3 class="mat-title-small">ÚLTIMOS CASOS</h3>
+<div class="cases-container">
+  <div *ngIf="legalCases.length === 0" class="no-cases">
+    <mat-icon class="no-cases-icon">folder_open</mat-icon>
+    <h3>No tienes casos legales aún</h3>
+    <p>Cuando apruebes consultas, tus casos aparecerán aquí</p>
+  </div>
 
-  <div *ngFor="let legalCase of legalCases" class="caso-item">
-    <div class="estado" [ngClass]="{'abierto': legalCase.status === 'OPEN', 'cerrado': legalCase.status === 'CLOSED'}">
-      {{ legalCase.status }}
+  <div *ngIf="legalCases.length > 0" class="cases-grid">
+    <div *ngFor="let legalCase of legalCases" class="case-card" (click)="viewLegalCase(legalCase.consultationId.id)">
+      <div class="case-card-header">
+        <h4 class="case-title">{{ legalCase.title }}</h4>
+        <span class="case-status" [ngClass]="getStatusClass(legalCase.status)">
+          {{ getStatusText(legalCase.status) }}
+        </span>
+      </div>
+
+      <div class="case-description">
+        <p>{{ legalCase.description | slice:0:120 }}{{ legalCase.description.length > 120 ? '...' : '' }}</p>
+      </div>
     </div>
-    <mat-card-content class="caso-info">
-      <h4>{{ legalCase.title }}</h4>
-      <p>{{ legalCase.description }}</p>
-    </mat-card-content>
   </div>
 </div>
