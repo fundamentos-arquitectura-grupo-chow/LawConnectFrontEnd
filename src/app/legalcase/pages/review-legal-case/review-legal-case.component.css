@@ -1,0 +1,109 @@
+.review-case {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+}
+
+.case-block {
+  background-color: #ffffff;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  width: 80%;
+  max-width: 800px;
+  display: flex;
+  flex-direction: column;
+}
+
+.case-header {
+  background-color: #ffffff;
+  padding: 15px;
+  margin-top: 20px;
+  text-align: center;
+  font-weight: bold;
+}
+
+.case-content {
+  padding: 20px;
+  font-size: 16px;
+  line-height: 1.6;
+}
+
+.case-description {
+  border: 1px solid #676666;
+  padding: 15px;
+  border-radius: 5px;
+}
+
+.case-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px;
+  border-top: 1px solid #676666;
+}
+
+.client-profile {
+  display: flex;
+  align-items: center;
+}
+
+.client-profile img {
+  height: 40px;
+  width: 40px;
+  margin-right: 10px;
+}
+
+.client-profile span {
+  font-size: 16px;
+  font-weight: bold;
+}
+
+.spacer {
+  flex: 1;
+}
+
+.actions {
+  display: flex;
+  gap: 10px;
+  justify-content: flex-end;
+}
+
+.actions button {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 30px;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: bold;
+}
+
+.actions .reject {
+  background-color: #ffffff;
+  border: 1px solid #D9D9D9;
+  color: #000000;
+  margin: 10px 0;
+}
+
+.actions .reject:hover {
+  background-color: #D9D9D9;
+}
+
+.actions .accept {
+  background-color: #2D6325;
+  color: #ffffff;
+  margin: 10px 0;
+}
+
+.actions .accept:hover {
+  background-color: #193313;
+}
+
+.actions .see-profile {
+  background-color: #632525;
+  color: #ffffff;
+}
+
+.actions .see-profile:hover {
+  background-color: #391616;
+}

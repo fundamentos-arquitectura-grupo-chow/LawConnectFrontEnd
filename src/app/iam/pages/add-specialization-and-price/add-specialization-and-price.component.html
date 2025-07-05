@@ -1,0 +1,28 @@
+<div class="add-container">
+  <h1>LawConnect</h1>
+
+  <p>Escoge tu especialización y precio de tus consultas para mostrar tu perfil en la aplicación.</p>
+
+  <form>
+    <div class="form-group">
+      <label for="specialization">Especialización</label>
+      <select id="specialization" name="specialization">
+        <option value="">Especialización</option>
+        <option value="civil">Derecho Civil</option>
+        <option value="penal">Derecho Penal</option>
+        <option value="laboral">Derecho Laboral</option>
+      </select>
+    </div>
+
+    <div class="form-group">
+      <label for="price">Define el precio de tus consultas</label>
+      <input type="number" id="price" name="price" placeholder="Define el precio de tus consultas">
+    </div>
+
+    <p class="disclaimer">
+      Al registrarte, aceptas nuestras Condiciones, nuestra Política de privacidad y nuestra Política de cookies.
+    </p>
+
+    <button type="submit" (click)="navigateTo('successful')">Registrarse</button>
+  </form>
+</div>

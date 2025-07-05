@@ -1,0 +1,13 @@
+<div class="profile-container mat-elevation-z3" *ngIf="lawyer">
+  <div class="profile-header mat-elevation-z2"></div>
+  <div class="profile-content">
+    <div class="profile-left">
+      <img src="assets/images/abogado696.jpg" [alt]="lawyer.profile.name.firstName || 'Abogado'" class="profile-image">      <h2>{{ lawyer.profile.name.firstName }} {{ lawyer.profile.name.lastName }}</h2>
+      <p>{{ lawyer.lawyerTypes.join(', ') }}</p>
+      <button mat-raised-button color="primary" class="consulta-btn" [routerLink]="['/make-consultation', lawyer.id]">Consulta</button>
+      <button mat-raised-button color="accent" class="view-btn" [routerLink]="['/view-consultations-made', lawyer.id]">Ver Consultas</button>
+    </div>
+  </div>
+</div>
+
+<app-last-legal-cases *ngIf="lawyer" [lawyerId]="lawyer.id"></app-last-legal-cases>

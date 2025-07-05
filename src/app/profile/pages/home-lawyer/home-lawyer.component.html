@@ -1,0 +1,30 @@
+<div class="main">
+  <div class="user-container">
+    <div class="welcome-section">
+      <h2>Bienvenido</h2>
+      <p>Panel de Control del Abogado</p>
+    </div>
+
+    <app-current-user></app-current-user>
+
+    <div class="stats-grid">
+      <div class="stat-card">
+        <span class="stat-number">{{ activeCasesCount }}</span>
+        <span class="stat-label">Casos Activos</span>
+      </div>
+      <div class="stat-card pending">
+        <span class="stat-number">{{ pendingConsultationsCount }}</span>
+        <span class="stat-label">Consultas Pendientes</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="lawyers-container">
+    <div class="dashboard-header">
+      <h1 class="dashboard-title">Casos Legales Recientes</h1>
+      <p class="dashboard-subtitle">Gestiona y revisa tus casos más importantes</p>
+    </div>
+
+    <app-last-legal-cases [lawyerId]="currentId"></app-last-legal-cases>
+  </div>
+</div>

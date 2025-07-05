@@ -1,0 +1,64 @@
+.add-container {
+  width: 400px;
+  margin: 0 auto;
+  padding: 20px;
+  text-align: center;
+  background-color: white;
+  border-radius: 10px;
+}
+
+h1 {
+  font-size: 24px;
+  margin-bottom: 10px;
+  font-weight: bold;
+  color: #4B4B4B;
+}
+
+p {
+  font-size: 14px;
+  color: #6A6A6A;
+  margin: 10px 0;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  margin: 10px 0;
+  text-align: left;
+}
+
+label {
+  font-size: 14px;
+  color: #6A6A6A;
+  margin-bottom: 5px;
+}
+
+select, input[type="number"] {
+  padding: 10px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+button {
+  width: 100%;
+  padding: 10px;
+  background-color: #4B4B4B;
+  color: white;
+  font-size: 16px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-weight: bold;
+  margin-top: 20px;
+}
+
+button:hover {
+  background-color: #676666;
+}
+
+.disclaimer {
+  font-size: 12px;
+  color: #6A6A6A;
+  margin-top: 15px;
+}

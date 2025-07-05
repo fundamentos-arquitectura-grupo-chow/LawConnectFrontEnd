@@ -1,0 +1,135 @@
+.appointments-container {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 2rem;
+  background-color: #fcfcfc;
+  border-radius: 16px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+}
+
+.appointments-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2rem;
+}
+
+.appointments-header h2 {
+  font-size: 1.8rem;
+  font-weight: 600;
+  color: #333;
+  margin: 0;
+  letter-spacing: -0.5px;
+}
+
+.appointments-empty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 3rem 0;
+  color: #9e9e9e;
+}
+
+.appointments-empty mat-icon {
+  font-size: 3rem;
+  height: 3rem;
+  width: 3rem;
+  margin-bottom: 1rem;
+}
+
+.appointments-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 1.5rem;
+}
+
+.appointment-card {
+  position: relative;
+  background-color: white;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.04);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.appointment-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.08);
+}
+
+.appointment-status {
+  height: 6px;
+  background-color: #e0e0e0;
+}
+
+.appointment-status.confirmed {
+  background-color: #4caf50;
+}
+
+.appointment-status.pending {
+  background-color: #ff9800;
+}
+
+.appointment-status.cancelled {
+  background-color: #f44336;
+}
+
+.appointment-content {
+  padding: 1.2rem;
+}
+
+.appointment-content h3 {
+  margin: 0 0 0.8rem 0;
+  font-size: 1.1rem;
+  font-weight: 500;
+  color: #424242;
+}
+
+.appointment-details {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.85rem;
+  color: #757575;
+}
+
+.appointment-details span {
+  display: flex;
+  align-items: center;
+}
+
+.appointment-details mat-icon {
+  font-size: 1rem;
+  height: 1rem;
+  width: 1rem;
+  margin-right: 4px;
+}
+
+.status-badge {
+  padding: 4px 10px;
+  border-radius: 16px;
+  font-size: 0.75rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: white;
+}
+
+.status-badge.confirmed {
+  background-color: #4caf50;
+}
+
+.status-badge.pending {
+  background-color: #ff9800;
+}
+
+.status-badge.cancelled {
+  background-color: #f44336;
+}
+
+button[mat-fab] {
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.15);
+}

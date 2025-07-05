@@ -1,0 +1,41 @@
+.confirm-rejection {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #ffffff;
+  border-radius: 5px;
+  box-shadow: 0 8px 8px rgba(0, 0, 0, 0.1);
+  flex-direction: column;
+}
+
+.actions {
+  justify-content: flex-end;
+}
+
+.button {
+  margin: 10px 30px;
+  border-radius: 30px;
+
+}
+
+.cancel {
+  background-color: #CE2828;
+  color: #ffffff;
+  margin-right: 10px;
+}
+
+.cancel:hover {
+  background-color: #771717;
+}
+
+.accept {
+  background-color: #2D6325;
+  color: #ffffff;
+  margin: 10px 0;
+}
+
+.accept:hover {
+  background-color: #193313;
+}
+
+

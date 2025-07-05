@@ -1,0 +1,55 @@
+<div class="main-wrapper">
+  <div class="chat-container">
+    <!-- Cabecera con información del abogado -->
+    <div class="chat-header" *ngIf="lawyer">
+      <img [src]="lawyer.profile.image_url" alt="Foto de {{ lawyer.profile.name.fullName }}" class="profile-photo">
+      <div class="chat-info">
+        <h4>{{ lawyer.profile.name.fullName }}</h4>
+        <p><mat-icon>gavel</mat-icon> {{ lawyer.lawyerTypes }}</p>
+      </div>
+    </div>
+
+    <div class="chat-messages">
+      <div class="title-container">
+        <h2 class="title">Videollamadas</h2>
+        <p class="description" *ngIf="consultation">Consulta #{{ consultation.id }}</p>
+      </div>
+
+      <!-- Lista de videollamadas con diseño mejorado -->
+      <div class="video-calls-list" *ngIf="videoCalls.length > 0; else noVideoCalls">
+        <div class="video-call-card" *ngFor="let videoCall of videoCalls">
+          <div class="video-call-content">
+            <div class="video-call-header">
+              <mat-icon>videocam</mat-icon>
+              <h3>{{ videoCall.description }}</h3>
+            </div>
+            <div class="video-call-status" [ngClass]="{'active': videoCall.status === 'ACTIVE', 'completed': videoCall.status === 'COMPLETED', 'pending': videoCall.status === 'PENDING'}">
+              <span class="status-dot"></span>
+              <span>{{ videoCall.status }}</span>
+            </div>
+          </div>
+          <a [href]="getVideoCallLink(videoCall)" target="_blank" class="meet-button">
+            <mat-icon>video_call</mat-icon>
+            Unirse a la llamada
+          </a>
+        </div>
+      </div>
+
+      <!-- Mensaje cuando no hay videollamadas -->
+      <ng-template #noVideoCalls>
+        <div class="empty-state">
+          <mat-icon>videocam_off</mat-icon>
+          <p>No hay videollamadas programadas</p>
+        </div>
+      </ng-template>
+
+      <!-- Botón para crear videollamada (solo para abogados) -->
+      <button class="create-button" mat-raised-button color="primary"
+              *ngIf="currentUserRole === '[Role(id=1, name=LAWYER)]'"
+              (click)="createVideoCall()">
+        <mat-icon>add_circle</mat-icon>
+        Programar videollamada
+      </button>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,134 @@
+/* Estilos generales del formulario */
+.form-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+}
+
+form {
+  max-width: 700px;
+  margin: 20px auto 40px;
+  padding: 35px;
+  background-color: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.08);
+  width: 100%;
+}
+
+/* Contenedor de cada campo con alineación mejorada */
+form div {
+  margin-bottom: 28px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Alineación de las etiquetas */
+label {
+  display: block;
+  margin-bottom: 10px;
+  font-weight: 500;
+  color: #333;
+  font-size: 15px;
+  letter-spacing: 0.5px;
+  align-self: center;
+}
+
+/* Estilos para los inputs y textareas */
+input, textarea, select {
+  width: 80%;
+  padding: 14px 18px;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  font-size: 15px;
+  transition: all 0.3s ease;
+  background-color: #f9f9f9;
+  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.05);
+}
+
+input:focus, textarea:focus, select:focus {
+  outline: none;
+  border-color: #cb2020;
+  box-shadow: 0 0 0 3px rgba(203, 32, 32, 0.15);
+  background-color: #fff;
+}
+
+/* Altura específica para el textarea */
+textarea {
+  min-height: 140px;
+  resize: vertical;
+}
+
+/* Estilos para el botón */
+button[type="submit"] {
+  background-color: #cb2020;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  padding: 16px 24px;
+  font-size: 16px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  width: 80%;
+  margin: 15px auto 0;
+  box-shadow: 0 4px 6px rgba(203, 32, 32, 0.2);
+  display: block;
+  letter-spacing: 0.5px;
+}
+
+button[type="submit"]:hover {
+  background-color: #a51b1b;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 10px rgba(203, 32, 32, 0.25);
+}
+
+button[type="submit"]:active {
+  transform: translateY(0);
+}
+
+/* Estilos responsivos */
+@media (max-width: 768px) {
+  form {
+    padding: 25px 20px;
+    margin: 10px;
+  }
+
+  input, textarea, select, button[type="submit"] {
+    width: 90%;
+  }
+}
+
+/* Título del formulario */
+.form-title {
+  text-align: center;
+  color: #333;
+  margin-bottom: 35px;
+  font-weight: 600;
+  font-size: 26px;
+  position: relative;
+  padding-bottom: 12px;
+}
+
+.form-title::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 60px;
+  height: 3px;
+  background-color: #cb2020;
+  border-radius: 2px;
+}
+
+/* Mejora para el select */
+select {
+  appearance: none;
+  background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23777' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
+  background-repeat: no-repeat;
+  background-position: right 12px center;
+  background-size: 16px;
+  padding-right: 40px;
+}

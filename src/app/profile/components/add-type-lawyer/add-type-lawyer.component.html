@@ -1,0 +1,24 @@
+<div class="specialty-container">
+  <div class="specialty-icon"></div>
+
+  <h2>Añadir Especialidad</h2>
+  <p class="subtitle">Selecciona el área de derecho en la que te especializas</p>
+
+  <form [formGroup]="form" (ngSubmit)="onSubmit()">
+    <div class="input-container">
+      <mat-form-field appearance="outline" class="specialty-field">
+        <mat-label>Especialidad</mat-label>
+        <mat-select formControlName="specialty">
+          <mat-option *ngFor="let specialty of specialties" [value]="specialty.id">
+            {{ specialty.name }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+
+    <div class="actions-container">
+      <button type="button" class="btn-cancel" (click)="onCancel()">Cancelar</button>
+      <button type="submit" class="btn-accept" [disabled]="form.invalid">Guardar</button>
+    </div>
+  </form>
+</div>

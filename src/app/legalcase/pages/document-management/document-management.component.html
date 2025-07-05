@@ -1,0 +1,16 @@
+<div class="documents-management">
+  <div class="document-block">
+    <div class="block-header">
+      <p>DOCUMENTOS DE CASO {{ legalCaseId }}</p>
+    </div>
+
+    <div class="table-management">
+      <app-document-table
+        [legalCaseId]="legalCaseId"
+        [showUploadButton]="isLawyer"
+        [canUpdateStatus]="isLawyer"
+        (uploadClick)="openAddDocumentDialog()">
+      </app-document-table>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,36 @@
+<div class="review-case">
+    <div class="case-block">
+        <div class="case-header">
+            <p>CASO</p>
+        </div>
+
+        <div class="case-content">
+
+            <div class="case-description">
+                <p>
+                    <strong>Asunto:</strong> {{ legalCase?.title }} <br>
+                    <strong>Mensaje:</strong> {{ legalCase?.description }}
+                </p>
+            </div>
+            <div class="actions">
+                <button class="reject" (click)="openRejectionPopup('reject')">Denegar</button>
+
+                <button class="accept" (click)="acceptCase()">Aceptar</button>
+            </div>
+        </div>
+
+
+
+        <div class="case-footer">
+            <div class="client-profile">
+                <img src="https://github.com/UPC-PRE-SI729-2402-SW54-Lorem-Ipsum/Frontend/blob/feature/legal-case/src/assets/images/client-profile-image.png?raw=true"
+                     alt="Juan Pablo Segundo"/>
+                <span class="spacer"></span><span>Juan Pablo Segundo</span>
+            </div>
+            <div class="actions">
+                <button class="see-profile" (click)="seeProfile()">Ver Perfil</button>
+            </div>
+        </div>
+    </div>
+</div>
+

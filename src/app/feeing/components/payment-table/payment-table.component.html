@@ -1,0 +1,54 @@
+<div class="payment-container">
+  <div class="payment-header">
+    <h2>Pagos</h2>
+  </div>
+
+  <div class="payment-card" *ngIf="payments.length > 0; else noPayments">
+    <table class="payment-table">
+      <thead>
+      <tr>
+        <th>ID</th>
+        <th>Monto</th>
+        <th>Estado</th>
+        <th>Acciones</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let payment of payments">
+        <td>#{{ payment.id }}</td>
+        <td>S/. {{ payment.amount }}</td>
+        <td>
+            <span class="status-badge" [ngClass]="getStatusClass(payment.status)">
+              {{ payment.status }}
+            </span>
+        </td>
+        <td>
+          <button *ngIf="currentUserRole === '[Role(id=2, name=CLIENT)]'"
+                  class="pay-button"
+                  [disabled]="payment.status !== 'PENDIENTE' || isProcessing"
+                  (click)="completePayment(payment.id, payment.amount)">
+            <mat-spinner *ngIf="isProcessing && processingPaymentId === payment.id"
+                         diameter="16" class="button-spinner"></mat-spinner>
+            <span *ngIf="!(isProcessing && processingPaymentId === payment.id)">Pagar</span>
+          </button>
+        </td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="actions" *ngIf="currentUserRole === '[Role(id=1, name=LAWYER)]'">
+    <button class="create-button" (click)="createPayment()">
+      Crear Pago
+    </button>
+  </div>
+
+  <ng-template #noPayments>
+    <div class="empty-state">
+      <p>No hay pagos registrados</p>
+      <div *ngIf="currentUserRole === '[Role(id=1, name=LAWYER)]'" class="actions">
+        <button class="create-button" (click)="createPayment()">Crear Pago</button>
+      </div>
+    </div>
+  </ng-template>
+</div>

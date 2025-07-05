@@ -1,0 +1,46 @@
+<div class="signup-container">
+  <div class="header-section">
+    <div class="icon-wrapper">
+      <mat-icon class="profile-icon">person</mat-icon>
+    </div>
+    <h1>Complete Your Profile</h1>
+    <p class="subtitle">Just a few more details to get started</p>
+  </div>
+
+  <div class="form-section">
+    <form [formGroup]="form" (ngSubmit)="onSubmit()">
+      <div class="form-group">
+        <label class="form-label">Legal Specialty</label>
+        <div class="custom-select-wrapper">
+          <select formControlName="specialty" class="custom-select-native">
+            <option value="" disabled>Choose your specialty</option>
+            <option *ngFor="let specialty of specialties" [value]="specialty.id">
+              {{ specialty.name | titlecase }}
+            </option>
+          </select>
+          <mat-icon class="select-arrow">keyboard_arrow_down</mat-icon>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label class="form-label">Consultation Price</label>
+        <div class="custom-input-wrapper">
+          <span class="currency-prefix">$</span>
+          <input type="number" formControlName="price" placeholder="0.00" class="custom-input-native">
+          <span class="price-suffix">per hour</span>
+        </div>
+      </div>
+
+      <div class="action-buttons">
+        <button type="button" class="btn-secondary" (click)="onCancel()">
+          <mat-icon>close</mat-icon>
+          Cancel
+        </button>
+        <button type="submit" class="btn-primary" [disabled]="form.invalid">
+          <mat-icon>check</mat-icon>
+          Complete Profile
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

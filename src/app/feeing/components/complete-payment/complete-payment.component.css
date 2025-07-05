@@ -1,0 +1,122 @@
+/* src/app/feeing/components/complete-payment/complete-payment.component.css */
+.payment-form-container {
+  padding: 30px;
+  background: linear-gradient(145deg, #ffffff, #f7f9fc);
+  border-radius: 16px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
+  position: relative;
+  overflow: hidden;
+}
+
+.payment-form-container::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 6px;
+  height: 100%;
+  background: linear-gradient(to bottom, #16a085, #12876f);
+  border-radius: 3px 0 0 3px;
+}
+
+.card-icon {
+  width: 70px;
+  height: 70px;
+  margin: 0 auto 25px;
+  background: #f9f9f9;
+  border-radius: 50%;
+  position: relative;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.08);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.card-icon::after {
+  content: '💳';
+  font-size: 35px;
+}
+
+h2 {
+  font-size: 1.8rem;
+  font-weight: 600;
+  color: #2c3e50;
+  margin: 0 0 10px 0;
+  text-align: center;
+}
+
+.subtitle {
+  font-size: 0.95rem;
+  color: #7f8c8d;
+  margin-bottom: 30px;
+  text-align: center;
+  font-weight: bold;
+}
+
+.input-container, .card-details {
+  margin-bottom: 25px;
+}
+
+.full-width {
+  width: 100%;
+}
+
+.card-details {
+  display: flex;
+  gap: 16px;
+}
+
+.expiration {
+  width: 60%;
+}
+
+.cvv {
+  width: 40%;
+}
+
+.actions-container {
+  display: flex;
+  justify-content: center;
+  gap: 16px;
+  margin-top: 10px;
+}
+
+.btn-cancel, .btn-accept {
+  padding: 12px 24px;
+  border: none;
+  border-radius: 30px;
+  font-weight: 600;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  min-width: 120px;
+}
+
+.btn-cancel {
+  background: #f5f5f5;
+  color: #7f8c8d;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+}
+
+.btn-cancel:hover {
+  background: #e0e0e0;
+  transform: translateY(-2px);
+}
+
+.btn-accept {
+  background: linear-gradient(135deg, #16a085, #12876f);
+  color: white;
+  box-shadow: 0 4px 12px rgba(22, 160, 133, 0.3);
+}
+
+.btn-accept:hover {
+  background: linear-gradient(135deg, #12876f, #0e6e5a);
+  transform: translateY(-2px);
+}
+
+.btn-accept:disabled {
+  background: linear-gradient(135deg, #bdc3c7, #95a5a6);
+  color: #f5f5f5;
+  cursor: not-allowed;
+  transform: none;
+}

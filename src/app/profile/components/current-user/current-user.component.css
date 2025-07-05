@@ -1,0 +1,97 @@
+.user-profile {
+  display: flex;
+  flex-direction: column;
+  padding: 0;
+  min-width: 320px;
+  background: #ffffff;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.12);
+  border-radius: 16px;
+  margin-bottom: 20px;
+  overflow: hidden;
+  border: 1px solid rgba(220, 38, 38, 0.1);
+}
+
+.profile-header {
+  background: linear-gradient(135deg, #dc2626 0%, #b91c1c 100%);
+  padding: 24px;
+  text-align: center;
+  position: relative;
+}
+
+.avatar-container {
+  position: relative;
+  display: inline-block;
+}
+
+.avatar {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 4px solid rgba(255, 255, 255, 0.2);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+}
+
+.role-badge {
+  position: absolute;
+  bottom: -8px;
+  right: -8px;
+  background: #ffffff;
+  color: #dc2626;
+  font-size: 0.75rem;
+  font-weight: 600;
+  padding: 4px 8px;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+  border: 2px solid #dc2626;
+}
+
+.user-info {
+  padding: 20px 24px;
+  flex: 1;
+}
+
+.user-name {
+  font-size: 1.25rem;
+  font-weight: 600;
+  margin: 0 0 8px 0;
+  color: #1f2937;
+  text-align: center;
+}
+
+.user-email {
+  font-size: 0.875rem;
+  color: #6b7280;
+  margin: 0 0 16px 0;
+  text-align: center;
+}
+
+.user-details, .contact-info {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-bottom: 16px;
+}
+
+.detail-item, .contact-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 12px;
+  background: #f9fafb;
+  border-radius: 8px;
+  font-size: 0.875rem;
+  color: #374151;
+}
+
+.detail-icon, .contact-icon {
+  font-size: 18px;
+  color: #dc2626;
+}
+
+@media (max-width: 768px) {
+  .user-profile {
+    min-width: unset;
+    width: 100%;
+  }
+}

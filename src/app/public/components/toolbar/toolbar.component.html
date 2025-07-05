@@ -1,0 +1,42 @@
+<mat-toolbar>
+  <div class="logo-container" (click)="navigateToHome()" style="cursor: pointer;">
+    <img src="assets/images/lawconnect-logo.png" alt="Logo" class="logo">
+  </div>
+
+  <div class="nav-buttons">
+    <button *ngIf="userRole === 'LAWYER'" mat-button class="nav-btn" [routerLink]="['/home-lawyer']">
+      <mat-icon>home</mat-icon>
+      <span>Inicio</span>
+    </button>
+
+    <button *ngIf="userRole === 'CLIENT'" mat-button class="nav-btn" [routerLink]="['/home-client']">
+      <mat-icon>home</mat-icon>
+      <span>Inicio</span>
+    </button>
+
+    <button *ngIf="userRole === 'CLIENT'" mat-button class="nav-btn" [routerLink]="['/notifications']">
+      <mat-icon>notifications</mat-icon>
+      <span>Notificaciones</span>
+    </button>
+
+    <button *ngIf="userRole === 'LAWYER'" mat-button class="nav-btn" (click)="openAddSpecialtyDialog()">
+      <mat-icon>add_circle</mat-icon>
+      <span>Agregar especialidad</span>
+    </button>
+
+    <button mat-button class="nav-btn" [routerLink]="['/cases']">
+      <mat-icon>work</mat-icon>
+      <span>Casos</span>
+    </button>
+
+    <button *ngIf="userRole === 'LAWYER'" mat-button class="nav-btn" [routerLink]="['/consultations']">
+      <mat-icon>gavel</mat-icon>
+      <span>Ver solicitudes</span>
+    </button>
+
+    <button *ngIf="userRole === 'CLIENT'" mat-button class="nav-btn" [routerLink]="['/lawyer-search']">
+      <mat-icon>search</mat-icon>
+      <span>Buscar abogados</span>
+    </button>
+  </div>
+</mat-toolbar>

@@ -1,0 +1,208 @@
+{
+  "lawyers": [
+    {
+      "id": 1,
+      "name": "Juan",
+      "lastname": "Perez",
+      "speciality": "Abogado Civil",
+      "number": "123456789",
+      "email": "example.com",
+      "rating": 4,
+      "image_profile": "https://static.vecteezy.com/system/resources/thumbnails/009/292/244/small/default-avatar-icon-of-social-media-user-vector.jpg",
+      "last_case": [
+        {
+        "id": 1,
+        "name": "Maltrato domestico 1",
+        "description": "Descripcion del caso 1",
+        "status": "ABIERTO"
+        },
+        {
+          "id": 2,
+          "name": "Pension Alimenticia 1",
+          "description": "Descripcion del caso 2",
+          "status": "ABIERTO"
+        },
+        {
+          "id": 3,
+          "name": "Pension Alimenticia 1",
+          "description": "Descripcion del caso 3",
+          "status": "ABIERTO"
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "name": "Perez",
+      "lastname": "Ramiro",
+      "speciality": "Abogado de Violencia familiar",
+      "number": "123456789",
+      "email": "example.com",
+      "rating": 5,
+      "image_profile": "https://via.placeholder.com/100",
+      "last_case": [
+        {
+          "id": 1,
+          "name": "Maltrato domestico 2",
+          "description": "Descripcion del caso 1",
+          "status": "ABIERTO"
+        },
+        {
+          "id": 2,
+          "name": "Pension Alimenticia 2",
+          "description": "Descripcion del caso 2",
+          "status": "ABIERTO"
+        },
+        {
+          "id": 3,
+          "name": "Pension Alimenticia 2",
+          "description": "Descripcion del caso 3",
+          "status": "ABIERTO"
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "name": "Juan",
+      "lastname": "Perez",
+      "speciality": "Abogado de maltrato",
+      "number": "123456789",
+      "email": "example.com",
+      "rating": 4,
+      "image_profile": "https://static.vecteezy.com/system/resources/thumbnails/009/292/244/small/default-avatar-icon-of-social-media-user-vector.jpg",
+      "last_case": [
+        {
+          "id": 1,
+          "name": "Maltrato domestico 3",
+          "description": "Descripcion del caso 1",
+          "status": "ABIERTO"
+        },
+        {
+          "id": 2,
+          "name": "Pension Alimenticia 3",
+          "description": "Descripcion del caso 2",
+          "status": "ABIERTO"
+        },
+        {
+          "id": 3,
+          "name": "Pension Alimenticia 3",
+          "description": "Descripcion del caso 3",
+          "status": "ABIERTO"
+        }
+      ]
+    }
+  ],
+  "clients": [
+    {
+      "id": 1,
+      "name": "Jose",
+      "lastname": "Alvarez",
+      "email": "example.com",
+      "number": "123456789",
+      "image_profile": "https://static.vecteezy.com/system/resources/thumbnails/009/292/244/small/default-avatar-icon-of-social-media-user-vector.jpg",
+      "cases_made": [
+        {
+          "id": 1,
+          "name": "Maltrato domestico 1",
+          "description": "Descripcion del caso 1",
+          "status": "CERRADO"
+        },
+        {
+          "id": 2,
+          "name": "Pension Alimenticia 1",
+          "description": "Descripcion del caso 2",
+          "status": "CERRADO"
+        },
+        {
+          "id": 3,
+          "name": "Pension Alimenticia 1",
+          "description": "Descripcion del caso 3",
+          "status": "CERRADO"
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "name": "Ramiro",
+      "lastname": "Asdasd",
+      "email": "example.com",
+      "number": "123456789",
+      "image_profile": "https://static.vecteezy.com/system/resources/thumbnails/009/292/244/small/default-avatar-icon-of-social-media-user-vector.jpg",
+      "cases_made": [
+        {
+          "id": 1,
+          "name": "Maltrato domestico 2",
+          "description": "Descripcion del caso 1",
+          "status": "CERRADO"
+        },
+        {
+          "id": 2,
+          "name": "Pension Alimenticia 2",
+          "description": "Descripcion del caso 2",
+          "status": "CERRADO"
+        },
+        {
+          "id": 3,
+          "name": "Pension Alimenticia 2",
+          "description": "Descripcion del caso 3",
+          "status": "CERRADO"
+        }
+      ]
+    }
+  ],
+
+  "legal_case": [
+    {
+      "id": 1,
+      "title": "CASE1",
+      "description": "CASE1-DESC",
+      "status": "OPEN",
+      "consultationId": {
+        "id": 1,
+        "createdAt": "2024-11-15T19:35:34.285+00:00",
+        "updatedAt": "2024-11-15T19:35:59.973+00:00",
+        "lawyerId": 1,
+        "payment": {
+          "id": 1,
+          "createdAt": "2024-11-15T19:35:34.280+00:00",
+          "updatedAt": "2024-11-15T19:35:59.973+00:00",
+          "clientId": 1,
+          "amount": {
+            "amount": 133,
+            "currency": "PEN"
+          },
+          "status": "COMPLETADO",
+          "card": {
+            "cardNumber": "1111111111111111",
+            "expirationDate": "2012-12-01",
+            "cvv": "123"
+          }
+        },
+        "consultationStatus": "ACTIVE",
+        "description": "string",
+        "consultationType": "CORPORATE",
+        "paymentId": 1
+      },
+      "documents": [
+        {
+          "id": 1,
+          "title": "DOC1",
+          "type": "Acuerdo",
+          "description": "DOC1-DESC",
+          "legalCaseId": 1,
+          "status": "Pending"
+        }
+      ]
+    }
+  ],
+
+  "documents": [
+    {
+      "id": 1,
+      "title": "DOC1",
+      "type": "Acuerdo",
+      "description": "DOC1-DESC",
+      "legalCaseId": 1,
+      "status": "Pending"
+    }
+  ]
+}

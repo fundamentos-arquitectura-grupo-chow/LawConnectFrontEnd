@@ -1,0 +1,19 @@
+<div class="payment-form-container">
+  <div class="payment-icon"></div>
+
+  <h2>Generar Pago</h2>
+  <p class="subtitle">Ingresa el monto que el cliente deberá pagar por la consulta legal</p>
+
+  <div class="input-container">
+    <mat-form-field appearance="outline" class="amount-field">
+      <mat-label>Monto a pagar</mat-label>
+      <span matPrefix>S/. &nbsp;</span>
+      <input matInput [(ngModel)]="amount" type="number" min="0" step="0.01">
+    </mat-form-field>
+  </div>
+
+  <div class="actions-container">
+    <button class="btn-cancel" (click)="cancel()">Cancelar</button>
+    <button class="btn-accept" [disabled]="amount <= 0" (click)="accept()">Confirmar</button>
+  </div>
+</div>

@@ -1,0 +1,367 @@
+/* Contenedor principal */
+.document-table-container {
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+  overflow: hidden;
+  margin: 20px 0;
+}
+
+/* Encabezado de la tabla */
+.table-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 24px;
+  border-bottom: 1px solid #f0f0f0;
+}
+
+.table-header h2 {
+  font-size: 1.2rem;
+  font-weight: 500;
+  color: #333;
+  margin: 0;
+}
+
+/* Botón de subir documento */
+.upload-button {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: linear-gradient(to right, #d69b9b, #cb2020);
+  color: white;
+  border: none;
+  border-radius: 6px;
+  padding: 8px 16px;
+  font-size: 0.875rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.upload-button:hover {
+  background: linear-gradient(to right, #cb2020, #fa0000);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+}
+
+.upload-button .icon {
+  font-size: 1.2rem;
+  font-weight: bold;
+}
+
+/* Tabla responsiva */
+.table-responsive {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  margin-bottom: 10px;
+  max-width: 100%;
+}
+
+/* Estilos de la tabla */
+.documents-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.9rem;
+}
+
+.documents-table th {
+  text-align: left;
+  padding: 16px 24px;
+  color: #666;
+  font-weight: 500;
+  border-bottom: 1px solid #f0f0f0;
+  text-transform: uppercase;
+  font-size: 0.75rem;
+  letter-spacing: 0.5px;
+}
+
+.documents-table td {
+  padding: 16px 24px;
+  border-bottom: 1px solid #f0f0f0;
+  color: #333;
+}
+
+/* Filas */
+.document-row {
+  transition: background-color 0.2s;
+}
+
+.document-row:hover {
+  background-color: #f9f9f9;
+}
+
+/* Etiquetas para tipo y estado */
+.tag {
+  display: inline-block;
+  padding: 6px 12px;
+  border-radius: 20px;
+  font-size: 0.75rem;
+  font-weight: 500;
+}
+
+.type-tag {
+  background-color: #e3f2fd;
+  color: #1976d2;
+}
+
+.status-tag {
+  background-color: #e8f5e9;
+  color: #2e7d32;
+}
+
+/* Colores para diferentes estados */
+.status-tag.PENDING {
+  background-color: #fff8e1;
+  color: #f57c00;
+}
+
+.status-tag.APPROVED, .status-tag.COMPLETED {
+  background-color: #e8f5e9;
+  color: #2e7d32;
+}
+
+.status-tag.REJECTED, .status-tag.DENIED {
+  background-color: #ffebee;
+  color: #c62828;
+}
+
+.status-tag.IN_REVIEW {
+  background-color: #fff8e1;
+  color: #f57c00;
+}
+
+/* Mensaje cuando no hay datos */
+.no-data {
+  text-align: center;
+  color: #888;
+  padding: 30px 0;
+  font-style: italic;
+}
+
+/* Paginador */
+.paginator {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 16px;
+  border-top: 1px solid #f0f0f0;
+  gap: 20px;
+}
+
+.paginator .page-button {
+  padding: 8px 16px;
+  border: none;
+  border-radius: 4px;
+  background-color: #f5f5f5;
+  color: #333;
+  font-size: 0.875rem;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.paginator .page-button:hover:not([disabled]) {
+  background-color: #e0e0e0;
+}
+
+.paginator .page-button[disabled] {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.paginator .page-info {
+  color: #666;
+  font-size: 0.875rem;
+}
+
+/* Acciones generales */
+.actions {
+  display: flex;
+  gap: 10px;
+  justify-content: flex-end;
+  padding: 20px;
+}
+
+.actions button {
+  padding: 10px 20px;
+  border: none;
+  cursor: pointer;
+  font-size: 0.875rem;
+  font-weight: 500;
+  border-radius: 6px;
+  transition: all 0.2s;
+}
+
+.actions .model {
+  background-color: #4B4B4B;
+  color: #ffffff;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.actions .model:hover {
+  background-color: #353535;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+}
+
+/* Celda de acciones */
+.actions-cell {
+  padding: 12px 16px !important;
+}
+
+/* NUEVOS ESTILOS PARA BOTONES DE ESTADO */
+.status-actions {
+  display: flex;
+  gap: 8px;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.status-btn {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  background-color: #f5f5f5;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}
+
+.status-btn i {
+  font-size: 18px;
+  color: #757575;
+  transition: all 0.2s ease;
+}
+
+.status-btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+  background-color: #eeeeee;
+}
+
+.status-btn:hover i {
+  color: #424242;
+}
+
+.status-btn.active {
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  transform: translateY(-2px);
+}
+
+/* Completado (verde) */
+.status-btn:nth-child(1):hover {
+  background-color: rgba(46, 125, 50, 0.1);
+}
+
+.status-btn:nth-child(1):hover i {
+  color: #2e7d32;
+}
+
+.status-btn.active:nth-child(1) {
+  background-color: #2e7d32;
+}
+
+.status-btn.active:nth-child(1) i {
+  color: white;
+}
+
+/* Rechazado (rojo) */
+.status-btn:nth-child(2):hover {
+  background-color: rgba(198, 40, 40, 0.1);
+}
+
+.status-btn:nth-child(2):hover i {
+  color: #c62828;
+}
+
+.status-btn.active:nth-child(2) {
+  background-color: #c62828;
+}
+
+.status-btn.active:nth-child(2) i {
+  color: white;
+}
+
+/* En revisión (naranja) */
+.status-btn:nth-child(3):hover {
+  background-color: rgba(245, 124, 0, 0.1);
+}
+
+.status-btn:nth-child(3):hover i {
+  color: #f57c00;
+}
+
+.status-btn.active:nth-child(3) {
+  background-color: #f57c00;
+}
+
+.status-btn.active:nth-child(3) i {
+  color: white;
+}
+
+/* Efecto de ripple al hacer clic */
+.status-btn::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 5px;
+  height: 5px;
+  background: rgba(255, 255, 255, 0.5);
+  opacity: 0;
+  border-radius: 100%;
+  transform: scale(1, 1) translate(-50%, -50%);
+  transform-origin: 50% 50%;
+}
+
+.status-btn:active::after {
+  animation: ripple 0.6s ease-out;
+}
+
+@keyframes ripple {
+  0% {
+    transform: scale(0, 0) translate(-50%, -50%);
+    opacity: 0.5;
+  }
+  100% {
+    transform: scale(20, 20) translate(-50%, -50%);
+    opacity: 0;
+  }
+}
+
+/* Responsive para pantallas pequeñas */
+@media screen and (max-width: 768px) {
+  .documents-table th,
+  .documents-table td {
+    padding: 12px 6px;
+    font-size: 0.8rem;
+  }
+
+  .documents-table th:nth-child(2),
+  .documents-table td:nth-child(2) {
+    max-width: 120px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .status-actions {
+    gap: 6px;
+  }
+
+  .status-btn {
+    width: 32px;
+    height: 32px;
+  }
+
+  .status-btn i {
+    font-size: 16px;
+  }
+}

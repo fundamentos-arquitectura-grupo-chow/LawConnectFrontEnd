@@ -1,0 +1,323 @@
+.recommendation-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: linear-gradient(to bottom, #ffffff, #ffffff);
+  border-radius: 12px;
+  padding: 25px;
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.1);
+  max-width: 1200px;
+  margin: 20px auto;
+  margin-bottom: 50px;
+  transition: all 0.3s ease;
+}
+
+/* Modo compacto para integrar en home-client */
+.recommendation-container.compact {
+  padding: 15px;
+  margin: 0;
+  max-width: 100%;
+  box-shadow: 0 4px 15px rgba(203, 32, 32, 0.1);
+  border: 1px solid rgba(203, 32, 32, 0.1);
+}
+
+.recommendation-container h3 {
+  font-size: 22px;
+  color: #333;
+  margin-bottom: 20px;
+  font-weight: 600;
+  position: relative;
+  padding-bottom: 10px;
+}
+
+.recommendation-container.compact h3 {
+  font-size: 18px;
+  margin-bottom: 15px;
+  padding-bottom: 8px;
+}
+
+.recommendation-container h3::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 60px;
+  height: 3px;
+  background-color: #cb2020;
+  border-radius: 2px;
+}
+
+.recommendation-container.compact h3::after {
+  width: 40px;
+  height: 2px;
+}
+
+.recommendation-card {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  border: none;
+  border-radius: 10px;
+  padding: 10px;
+  background-color: #fff;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.08);
+  transition: transform 0.3s ease;
+}
+
+.recommendation-card.compact {
+  padding: 8px;
+  box-shadow: none;
+  background-color: #f8f9fa;
+}
+
+.lawyer-info {
+  display: flex;
+  text-align: left;
+  width: 100%;
+}
+
+.lawyer-info.compact {
+  align-items: center;
+  gap: 12px;
+}
+
+.lawyer-image {
+  width: 160px;
+  height: 160px;
+  object-fit: cover;
+  border-radius: 10px;
+  margin-right: 25px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+  transition: transform 0.3s ease;
+}
+
+.lawyer-image.compact {
+  width: 70px;
+  height: 70px;
+  margin-right: 0;
+  border: 3px solid #cb2020;
+  border-radius: 50%;
+}
+
+.lawyer-image:hover {
+  transform: scale(1.05);
+}
+
+.lawyer-image.compact:hover {
+  transform: scale(1.1);
+}
+
+.info-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 160px;
+  width: 100%;
+  padding: 5px 0;
+  text-align: center;
+}
+
+.info-container.compact {
+  height: auto;
+  text-align: left;
+  justify-content: center;
+  gap: 6px;
+}
+
+.info-container h4 {
+  font-size: 24px;
+  font-weight: 700;
+  margin: 0 0 10px 0;
+  color: #333;
+}
+
+.info-container.compact h4 {
+  font-size: 16px;
+  margin: 0;
+  line-height: 1.2;
+}
+
+.info-container p {
+  color: #cb2020;
+  font-weight: 500;
+  margin: 0 0 12px 0;
+  font-size: 16px;
+}
+
+.info-container.compact p {
+  font-size: 12px;
+  margin: 0;
+}
+
+.stars {
+  display: flex;
+  margin-bottom: 15px;
+  justify-content: center;
+}
+
+.stars span {
+  font-size: 22px;
+  color: #ddd;
+  margin-right: 3px;
+}
+
+.stars.compact span {
+  font-size: 14px;
+  margin-right: 2px;
+}
+
+.stars .filled {
+  color: #ffc107;
+}
+
+.button-container {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+}
+
+.button-container.compact {
+  gap: 8px;
+  justify-content: flex-start;
+}
+
+.primary-btn {
+  background-color: #cb2020;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  padding: 10px 20px;
+  font-size: 15px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-weight: bold;
+  box-shadow: 0 2px 5px rgba(203, 32, 32, 0.3);
+}
+
+.button-container.compact .primary-btn {
+  padding: 8px 12px;
+  font-size: 12px;
+  border-radius: 6px;
+}
+
+.secondary-btn {
+  background-color: transparent;
+  color: #cb2020;
+  border: 1px solid #cb2020;
+  border-radius: 4px;
+  padding: 10px 20px;
+  font-size: 15px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-weight: bold;
+}
+
+.button-container.compact .secondary-btn {
+  padding: 8px 12px;
+  font-size: 12px;
+  border-radius: 6px;
+}
+
+.primary-btn:hover, .secondary-btn:hover {
+  transform: translateY(-2px);
+}
+
+.primary-btn:hover {
+  background-color: #a91818;
+}
+
+.secondary-btn:hover {
+  background-color: #cb2020;
+  color: white;
+}
+
+.navigation-btn {
+  background: #cb2020;
+  color: white;
+  border: none;
+  border-radius: 50%;
+  width: 46px;
+  height: 46px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 20px;
+  cursor: pointer;
+  margin: 0 15px;
+  transition: all 0.3s ease;
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.2);
+}
+
+.navigation-btn.compact {
+  width: 32px;
+  height: 32px;
+  font-size: 16px;
+  margin: 0 10px;
+}
+
+.navigation-btn:hover:not([disabled]) {
+  background: #a91818;
+  transform: scale(1.1);
+}
+
+.navigation-btn:disabled {
+  background: #d69b9b;
+  cursor: not-allowed;
+  box-shadow: none;
+  transform: none;
+}
+
+/* Contador para modo compacto */
+.lawyer-counter {
+  font-size: 12px;
+  color: #666;
+  margin-top: 10px;
+  text-align: center;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .lawyer-info {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .lawyer-info.compact {
+    flex-direction: row;
+    align-items: center;
+  }
+
+  .lawyer-image {
+    margin-right: 0;
+    margin-bottom: 15px;
+  }
+
+  .lawyer-image.compact {
+    margin-right: 0;
+    margin-bottom: 0;
+  }
+
+  .info-container {
+    height: auto;
+    text-align: center;
+  }
+
+  .info-container.compact {
+    text-align: left;
+  }
+
+  .stars {
+    justify-content: center;
+  }
+
+  .button-container.compact {
+    flex-direction: column;
+    gap: 6px;
+  }
+
+  .navigation-btn {
+    margin: 0 10px;
+  }
+}

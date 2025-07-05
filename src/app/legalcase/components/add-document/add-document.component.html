@@ -1,0 +1,66 @@
+<div class="add-document-container">
+  <div class="dialog-header">
+    <h2>Nuevo documento</h2>
+    <p class="subtitle">Completa la información del documento</p>
+  </div>
+
+  <form [formGroup]="documentForm" (ngSubmit)="accept()" class="document-form">
+    <div class="form-field">
+      <label for="title">
+        <i class="material-icons">description</i>
+        <span>Título</span>
+      </label>
+      <input
+        id="title"
+        type="text"
+        formControlName="title"
+        placeholder="Ingresa el título del documento">
+      <div class="error-message" *ngIf="documentForm.get('title')?.touched && documentForm.get('title')?.errors?.['required']">
+        El título es obligatorio
+      </div>
+    </div>
+
+    <div class="form-field">
+      <label for="description">
+        <i class="material-icons">notes</i>
+        <span>Descripción</span>
+      </label>
+      <textarea
+        id="description"
+        formControlName="description"
+        placeholder="Ingresa una descripción breve"></textarea>
+      <div class="error-message" *ngIf="documentForm.get('description')?.touched && documentForm.get('description')?.errors?.['required']">
+        La descripción es obligatoria
+      </div>
+    </div>
+
+    <div class="form-field">
+      <label for="type">
+        <i class="material-icons">category</i>
+        <span>Tipo de documento</span>
+      </label>
+      <select id="type" formControlName="type">
+        <option *ngFor="let type of documentTypes" [value]="type.value">
+          {{ type.label }}
+        </option>
+      </select>
+    </div>
+
+    <div class="error-submit" *ngIf="submitError">
+      {{ submitError }}
+    </div>
+
+    <div class="form-actions">
+      <button type="button" class="btn-cancel" (click)="cancel()">
+        Cancelar
+      </button>
+      <button
+        type="submit"
+        class="btn-submit"
+        [disabled]="isSubmitting"
+        [class.loading]="isSubmitting">
+        {{ isSubmitting ? 'Guardando...' : 'Guardar documento' }}
+      </button>
+    </div>
+  </form>
+</div>
