@@ -28,6 +28,10 @@ export class HomeLawyerComponent implements OnInit {
     );
   }
 
+  signOut(): void {
+    this.authService.signOut();
+  }
+
   private loadStatistics(): void {
     this.loadActiveCasesCount();
     this.loadPendingConsultationsCount();

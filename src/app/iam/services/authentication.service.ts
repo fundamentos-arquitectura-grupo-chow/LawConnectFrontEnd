@@ -23,7 +23,7 @@ export class AuthenticationService {
     })
   };
 
-  private signedIn: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
+  private signedIn: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(this.hasValidToken());
   private signedInUserId: BehaviorSubject<number> = new BehaviorSubject<number>(0);
   private signedInUsername: BehaviorSubject<string> = new BehaviorSubject<string>('');
   private signedInUserRole: BehaviorSubject<string> = new BehaviorSubject<string>('');
@@ -34,7 +34,29 @@ export class AuthenticationService {
     private lawyerService: LawyerService,
     private clientService: ClientService,
     private dialog: MatDialog
-  ) { }
+  ) {
+    this.initializeAuthState();
+  }
+
+  private hasValidToken(): boolean {
+    const token = localStorage.getItem('token');
+    return !!token;
+  }
+
+  private initializeAuthState(): void {
+    const token = localStorage.getItem('token');
+    if (token) {
+      this.signedIn.next(true);
+
+      const username = localStorage.getItem('username');
+      const role = localStorage.getItem('role');
+      const userId = localStorage.getItem('userId');
+
+      if (username) this.signedInUsername.next(username);
+      if (role) this.signedInUserRole.next(role);
+      if (userId) this.signedInUserId.next(Number(userId));
+    }
+  }
 
   get isSignedIn() {
     return this.signedIn.asObservable();
@@ -78,13 +100,19 @@ export class AuthenticationService {
           this.signedIn.next(true);
           this.signedInUsername.next(response.username);
           this.signedInUserRole.next(response.role);
+
+          // Guardar en localStorage
           localStorage.setItem('token', response.token);
+          localStorage.setItem('username', response.username);
+          localStorage.setItem('role', response.role);
+
           console.log(`Signed in as ${response.username} with token ${response.token}`);
           console.log(`Role: ${response.role}`);
 
           if (response.role === '[Role(id=1, name=LAWYER)]') {
             this.lawyerService.getLawyerIdByEmail(response.username).subscribe(lawyerId => {
               this.signedInUserId.next(lawyerId);
+              localStorage.setItem('userId', lawyerId.toString());
               this.router.navigate(['/home-lawyer']).then(() => {
                 this.lawyerService.getLawyerById(lawyerId).subscribe(lawyer => {
                   if (lawyer.lawyerTypes.length == 0) {
@@ -99,6 +127,7 @@ export class AuthenticationService {
           } else {
             this.clientService.getClientIdByEmail(response.username).subscribe(clientId => {
               this.signedInUserId.next(clientId);
+              localStorage.setItem('userId', clientId.toString());
               this.router.navigate(['/home-client']).then();
             });
           }
@@ -109,7 +138,7 @@ export class AuthenticationService {
           this.signedInUserId.next(0);
           this.signedInUsername.next('');
           this.signedInUserRole.next('');
-          localStorage.removeItem('token');
+          localStorage.clear();
           this.router.navigate(['/sign-in']).then();
         }
       });
@@ -120,7 +149,13 @@ export class AuthenticationService {
     this.signedInUserId.next(0);
     this.signedInUsername.next('');
     this.signedInUserRole.next('');
+
+    // Limpiar localStorage
     localStorage.removeItem('token');
+    localStorage.removeItem('username');
+    localStorage.removeItem('role');
+    localStorage.removeItem('userId');
+
     this.router.navigate(['/sign-in']);
   }
 }
