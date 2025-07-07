@@ -9,7 +9,7 @@ import {AppointmentResource} from "../model/appointment";
   providedIn: 'root'
 })
 export class AppointmentsService {
-  private baseUrl = `${environment.serverBasePath}/Appointment`;
+  private baseUrl = `${environment.serverBasePath}/appointment`;
   private httpOptions = {
     headers: new HttpHeaders({
       'Content-Type': 'application/json'

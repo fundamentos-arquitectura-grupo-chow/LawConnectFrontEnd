@@ -8,7 +8,7 @@ import {ChatRoomResource} from "../model/chat-room";
   providedIn: 'root'
 })
 export class ChatRoomService {
-  private baseUrl = `${environment.serverBasePath}/ChatRoom`;
+  private baseUrl = `${environment.serverBasePath}/chatRoom`;
   private httpOptions = {
     headers: new HttpHeaders({
       'Content-Type': 'application/json'
